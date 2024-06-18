@@ -7,20 +7,24 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C83231472C1408580049D3B9 /* Just_Salmon_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */; };
+		C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231462C1408580049D3B9 /* Just_Salmon_App.swift */; };
 		C83231492C1408580049D3B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231482C1408580049D3B9 /* ContentView.swift */; };
 		C832314B2C1408590049D3B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C832314A2C1408590049D3B9 /* Assets.xcassets */; };
 		C832314E2C1408590049D3B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C832314D2C1408590049D3B9 /* Preview Assets.xcassets */; };
 		C86CDE492C1D80D50029ECD1 /* JoinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CDE482C1D80D50029ECD1 /* JoinPage.swift */; };
+		C8965A052C21AADF000804A2 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965A042C21AADF000804A2 /* MainPage.swift */; };
+		C8C9AE452C1FD0F2003C24DE /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		C83231432C1408580049D3B9 /* Just-Salmon_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just-Salmon_App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_Salmon_AppApp.swift; sourceTree = "<group>"; };
+		C83231462C1408580049D3B9 /* Just_Salmon_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_Salmon_App.swift; sourceTree = "<group>"; };
 		C83231482C1408580049D3B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C832314A2C1408590049D3B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C832314D2C1408590049D3B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		C86CDE482C1D80D50029ECD1 /* JoinPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinPage.swift; sourceTree = "<group>"; };
+		C8965A042C21AADF000804A2 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
+		C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +57,9 @@
 		C83231452C1408580049D3B9 /* Just-Salmon_App */ = {
 			isa = PBXGroup;
 			children = (
-				C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */,
+				C8CA49B42C2184370013A1A4 /* View */,
+				C83231462C1408580049D3B9 /* Just_Salmon_App.swift */,
 				C83231482C1408580049D3B9 /* ContentView.swift */,
-				C86CDE482C1D80D50029ECD1 /* JoinPage.swift */,
 				C832314A2C1408590049D3B9 /* Assets.xcassets */,
 				C832314C2C1408590049D3B9 /* Preview Content */,
 			);
@@ -68,6 +72,16 @@
 				C832314D2C1408590049D3B9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C8CA49B42C2184370013A1A4 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				C86CDE482C1D80D50029ECD1 /* JoinPage.swift */,
+				C8965A042C21AADF000804A2 /* MainPage.swift */,
+				C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,9 +154,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8965A052C21AADF000804A2 /* MainPage.swift in Sources */,
 				C83231492C1408580049D3B9 /* ContentView.swift in Sources */,
-				C83231472C1408580049D3B9 /* Just_Salmon_AppApp.swift in Sources */,
+				C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */,
 				C86CDE492C1D80D50029ECD1 /* JoinPage.swift in Sources */,
+				C8C9AE452C1FD0F2003C24DE /* RegisterPage.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
