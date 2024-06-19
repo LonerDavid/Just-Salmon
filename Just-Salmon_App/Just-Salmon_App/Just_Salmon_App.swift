@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct Just_Salmon_AppApp: App {
+struct Just_Salmon_App: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            JoinPage()
         }
     }
 }

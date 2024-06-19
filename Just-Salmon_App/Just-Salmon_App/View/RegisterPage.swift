@@ -6,15 +6,14 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct RegisterPage: View {
-    var body: some View {
-//        @State private var isShowSavLogin = false
-      Text("Login")
-      
-    }
+  var body: some View{
+   Text("Login")
+  }
 }
 
 #Preview {
-    RegisterPage()
+  RegisterPage()
 }
