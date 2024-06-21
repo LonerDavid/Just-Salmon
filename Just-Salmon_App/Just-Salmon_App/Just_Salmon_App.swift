@@ -6,12 +6,18 @@
 //
 
 import SwiftUI
+import Firebase
 
 @main
 struct Just_Salmon_App: App {
+  
+  init() {
+    FirebaseApp.configure()
+  }
+    
     var body: some Scene {
         WindowGroup {
-            JoinPage()
+            ContentView()
         }
     }
 }

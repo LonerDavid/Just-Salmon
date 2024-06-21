@@ -16,19 +16,21 @@ struct JoinPage: View {
           .ignoresSafeArea()
         VStack{
           Image("JoinPageImage2")
-          //          .resizable()
-            .frame(width: 136.26, height: 136.26)
-            .offset(CGSize(width: 135, height: 0))
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 130)
+            .offset(CGSize(width: 140, height: 0))
             .ignoresSafeArea()
           Image("JoinPageImage1")
             .resizable()
-            .frame(width: 195, height: 195)
-            .offset(CGSize(width: -15.0, height: 0))
+            .aspectRatio(contentMode: .fit)
+            .frame(height: 195)
+            .offset(CGSize(width: -30, height: -30))
           Text("Track,\nAdjust,\nSucceed.")
             .lineSpacing(5.0)
             .multilineTextAlignment(.leading)
             .frame(alignment: .leading)
-            .font(.system(size: 74, weight: .heavy))
+            .font(.system(size: 70, weight: .heavy))
             .padding(.vertical)
             .foregroundColor(Color("TextColorGray"))
             .overlay(alignment: .topTrailing){
@@ -41,7 +43,7 @@ struct JoinPage: View {
           HStack (alignment: .bottom){ //button
             Spacer()
             NavigationLink {
-              TimerPage()
+              HomeScreen()
                 .navigationBarBackButtonHidden()
             } label:{
               HStack(spacing: 4) {
@@ -71,7 +73,7 @@ struct JoinPage: View {
 //        case .timerPage:
 //          TimerPage()
 //            .navigationBarBackButtonHidden()
-//        case .RegisterPage:
+//        case .registerPage:
 ////          RegisterPage()
 //          TimerPage()
 //        }
@@ -82,7 +84,7 @@ struct JoinPage: View {
 
 enum Destination{
   case timerPage
-  case RegisterPage
+  case registerPage
 }
 
 #Preview {

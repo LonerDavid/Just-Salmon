@@ -218,58 +218,6 @@ struct TimerPage: View {
             .padding(.top, 40)
           }
           
-          ToolbarItem(placement: .bottomBar) {
-            HStack (spacing: 20){
-              Button {
-                
-              }label: {
-                Image(systemName: "timer")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 35, height: 35)
-                  .foregroundStyle(Color("MainColor"))
-              }
-              
-              Button {
-                
-              }label: {
-                Image(systemName: "calendar")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 35, height: 35)
-                  .foregroundStyle(Color("TextColorLightGray"))
-              }
-              
-              Button {
-                
-              }label: {
-                Image(systemName: "plus.circle.fill")
-                  .resizable()
-                  .frame(width: 60, height: 60)
-                  .foregroundStyle(Color("MainColor"))
-              }
-              
-              Button {
-                
-              }label: {
-                Image(systemName: "chart.bar.xaxis.ascending")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 35, height: 35)
-                  .foregroundStyle(Color("TextColorLightGray"))
-              }
-              
-              Button {
-                
-              }label: {
-                Image(systemName: "house")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 35, height: 35)
-                  .foregroundStyle(Color("TextColorLightGray"))
-              }
-            }
-          }
         }
       }
     }
