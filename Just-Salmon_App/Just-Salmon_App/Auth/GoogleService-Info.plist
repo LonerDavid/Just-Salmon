@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>322190273321-8grs32vn4tt6n5odlbod9k03ggn7ueo0.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.322190273321-8grs32vn4tt6n5odlbod9k03ggn7ueo0</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDYEd5DWhhVQoB_8roHYo4CjEUhGaKgrC0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>322190273321</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>LonerDavid.Just-Salmon-App</string>
+	<key>PROJECT_ID</key>
+	<string>just-salmon</string>
+	<key>STORAGE_BUCKET</key>
+	<string>just-salmon.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:322190273321:ios:77f13fb823f4518d456538</string>
+</dict>
+</plist>
