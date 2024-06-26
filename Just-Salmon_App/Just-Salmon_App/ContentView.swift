@@ -8,11 +8,17 @@
 import SwiftUI
 
 struct ContentView: View {
-    var body: some View {
+  @StateObject var viewModel = MainViewModel()
+  
+  var body: some View {
+    if viewModel.isSignIn, !viewModel.currentUserId.isEmpty {
+      HomeScreen()
+    } else {
       JoinPage()
     }
+  }
 }
 
 #Preview {
-    ContentView()
+  ContentView()
 }

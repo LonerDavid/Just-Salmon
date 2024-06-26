@@ -12,8 +12,10 @@ struct JoinPage: View {
   var body: some View {
     NavigationStack{
       ZStack{
+        //background
         LinearGradient(gradient: Gradient(colors: [Color("MainColorLight"), Color.white]), startPoint: .top, endPoint: .bottom)
           .ignoresSafeArea()
+        
         VStack{
           Image("JoinPageImage2")
             .resizable()
@@ -43,7 +45,7 @@ struct JoinPage: View {
           HStack (alignment: .bottom){ //button
             Spacer()
             NavigationLink {
-              HomeScreen()
+              RegisterPage()
                 .navigationBarBackButtonHidden()
             } label:{
               HStack(spacing: 4) {
@@ -88,5 +90,7 @@ enum Destination{
 }
 
 #Preview {
-  JoinPage()
+  NavigationStack {
+    JoinPage()
+  }
 }

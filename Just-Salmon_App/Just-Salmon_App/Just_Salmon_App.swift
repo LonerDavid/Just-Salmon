@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Firebase
+import FirebaseCore
 
 @main
 struct Just_Salmon_App: App {
