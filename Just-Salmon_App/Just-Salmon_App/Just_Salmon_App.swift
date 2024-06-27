@@ -6,9 +6,15 @@
 //
 
 import SwiftUI
+import FirebaseCore
 
 @main
-struct Just_Salmon_AppApp: App {
+struct Just_Salmon_App: App {
+  
+  init() {
+    FirebaseApp.configure()
+  }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()

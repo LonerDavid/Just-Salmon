@@ -7,18 +7,62 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C83231472C1408580049D3B9 /* Just_Salmon_AppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */; };
+		C809D2D72C22A5CE00C1959B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C809D2D62C22A5CE00C1959B /* GoogleService-Info.plist */; };
+		C809D2DA2C22A5F900C1959B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C809D2D92C22A5F900C1959B /* FirebaseAnalytics */; };
+		C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231462C1408580049D3B9 /* Just_Salmon_App.swift */; };
 		C83231492C1408580049D3B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231482C1408580049D3B9 /* ContentView.swift */; };
 		C832314B2C1408590049D3B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C832314A2C1408590049D3B9 /* Assets.xcassets */; };
 		C832314E2C1408590049D3B9 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C832314D2C1408590049D3B9 /* Preview Assets.xcassets */; };
+		C86CDE492C1D80D50029ECD1 /* JoinPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86CDE482C1D80D50029ECD1 /* JoinPage.swift */; };
+		C86D8C672C253D3E00E91168 /* CalendarPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C662C253D3E00E91168 /* CalendarPage.swift */; };
+		C86D8C692C253E0000E91168 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C682C253E0000E91168 /* Date+Extension.swift */; };
+		C86D8C6B2C25487E00E91168 /* HomeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C6A2C25487E00E91168 /* HomeScreen.swift */; };
+		C86D8C6D2C254A5000E91168 /* NewEventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C6C2C254A5000E91168 /* NewEventPage.swift */; };
+		C86D8C712C254B5500E91168 /* AnalysisPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C702C254B5500E91168 /* AnalysisPage.swift */; };
+		C86D8C732C25574900E91168 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C722C25574900E91168 /* Event.swift */; };
+		C88F31142C2C2148008EBD60 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = C88F31132C2C2148008EBD60 /* MijickCalendarView */; };
+		C88F31162C2C30E0008EBD60 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F31152C2C30E0008EBD60 /* HomePage.swift */; };
+		C88F31182C2C7962008EBD60 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F31172C2C7962008EBD60 /* LoginPage.swift */; };
+		C8965A052C21AADF000804A2 /* TimerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965A042C21AADF000804A2 /* TimerPage.swift */; };
+		C8C6A4492C2C7DE800B91E5A /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A4482C2C7DE800B91E5A /* LoginViewModel.swift */; };
+		C8C6A44B2C2C845700B91E5A /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A44A2C2C845700B91E5A /* RegisterViewModel.swift */; };
+		C8C6A44D2C2C86F800B91E5A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A44C2C2C86F800B91E5A /* User.swift */; };
+		C8C6A44F2C2C883700B91E5A /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A44E2C2C883700B91E5A /* Extension.swift */; };
+		C8C6A4522C2C8ABD00B91E5A /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A4512C2C8ABD00B91E5A /* MainViewModel.swift */; };
+		C8C6A4552C2C92D400B91E5A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C6A4542C2C92D400B91E5A /* HomeViewModel.swift */; };
+		C8C9AE452C1FD0F2003C24DE /* RegisterPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */; };
+		C8FE44E32C2210230088962E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E22C2210230088962E /* FirebaseAuth */; };
+		C8FE44E52C2210230088962E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E42C2210230088962E /* FirebaseFirestoreSwift */; };
+		C8FE44E72C2210230088962E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E62C2210230088962E /* FirebaseStorage */; };
+		C8FE44EC2C22A07B0088962E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44EB2C22A07B0088962E /* GoogleSignIn */; };
+		C8FE44EE2C22A07B0088962E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C809D2D62C22A5CE00C1959B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C809D2DE2C22A78600C1959B /* Just-Salmon-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Just-Salmon-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C83231432C1408580049D3B9 /* Just-Salmon_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just-Salmon_App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_Salmon_AppApp.swift; sourceTree = "<group>"; };
+		C83231462C1408580049D3B9 /* Just_Salmon_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_Salmon_App.swift; sourceTree = "<group>"; };
 		C83231482C1408580049D3B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		C832314A2C1408590049D3B9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C832314D2C1408590049D3B9 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		C86CDE482C1D80D50029ECD1 /* JoinPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JoinPage.swift; sourceTree = "<group>"; };
+		C86D8C662C253D3E00E91168 /* CalendarPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarPage.swift; sourceTree = "<group>"; };
+		C86D8C682C253E0000E91168 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
+		C86D8C6A2C25487E00E91168 /* HomeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeScreen.swift; sourceTree = "<group>"; };
+		C86D8C6C2C254A5000E91168 /* NewEventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventPage.swift; sourceTree = "<group>"; };
+		C86D8C702C254B5500E91168 /* AnalysisPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisPage.swift; sourceTree = "<group>"; };
+		C86D8C722C25574900E91168 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C88F31152C2C30E0008EBD60 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
+		C88F31172C2C7962008EBD60 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
+		C8965A042C21AADF000804A2 /* TimerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPage.swift; sourceTree = "<group>"; };
+		C8C6A4482C2C7DE800B91E5A /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C8C6A44A2C2C845700B91E5A /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
+		C8C6A44C2C2C86F800B91E5A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		C8C6A44E2C2C883700B91E5A /* Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		C8C6A4512C2C8ABD00B91E5A /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		C8C6A4542C2C92D400B91E5A /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterPage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,16 +70,40 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C88F31142C2C2148008EBD60 /* MijickCalendarView in Frameworks */,
+				C8FE44EE2C22A07B0088962E /* GoogleSignInSwift in Frameworks */,
+				C8FE44E32C2210230088962E /* FirebaseAuth in Frameworks */,
+				C809D2DA2C22A5F900C1959B /* FirebaseAnalytics in Frameworks */,
+				C8FE44EC2C22A07B0088962E /* GoogleSignIn in Frameworks */,
+				C8FE44E52C2210230088962E /* FirebaseFirestoreSwift in Frameworks */,
+				C8FE44E72C2210230088962E /* FirebaseStorage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C809D2D82C22A5F900C1959B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C809D2DB2C22A63000C1959B /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				C809D2D62C22A5CE00C1959B /* GoogleService-Info.plist */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
 		C832313A2C1408580049D3B9 = {
 			isa = PBXGroup;
 			children = (
+				C809D2DE2C22A78600C1959B /* Just-Salmon-App-Info.plist */,
 				C83231452C1408580049D3B9 /* Just-Salmon_App */,
+				C809D2D82C22A5F900C1959B /* Frameworks */,
 				C83231442C1408580049D3B9 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -51,10 +119,15 @@
 		C83231452C1408580049D3B9 /* Just-Salmon_App */ = {
 			isa = PBXGroup;
 			children = (
-				C83231462C1408580049D3B9 /* Just_Salmon_AppApp.swift */,
+				C83231462C1408580049D3B9 /* Just_Salmon_App.swift */,
 				C83231482C1408580049D3B9 /* ContentView.swift */,
-				C832314A2C1408590049D3B9 /* Assets.xcassets */,
+				C809D2DB2C22A63000C1959B /* Auth */,
+				C8C6A4532C2C8E9E00B91E5A /* Data */,
+				C86D8C6E2C254A6300E91168 /* Extension */,
 				C832314C2C1408590049D3B9 /* Preview Content */,
+				C8CA49B42C2184370013A1A4 /* Views */,
+				C8C6A4502C2C8A9500B91E5A /* ViewModels */,
+				C832314A2C1408590049D3B9 /* Assets.xcassets */,
 			);
 			path = "Just-Salmon_App";
 			sourceTree = "<group>";
@@ -65,6 +138,59 @@
 				C832314D2C1408590049D3B9 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		C86D8C6E2C254A6300E91168 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				C8C6A44E2C2C883700B91E5A /* Extension.swift */,
+				C86D8C682C253E0000E91168 /* Date+Extension.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		C86D8C6F2C254A8A00E91168 /* HomeScreen */ = {
+			isa = PBXGroup;
+			children = (
+				C8965A042C21AADF000804A2 /* TimerPage.swift */,
+				C86D8C662C253D3E00E91168 /* CalendarPage.swift */,
+				C86D8C6C2C254A5000E91168 /* NewEventPage.swift */,
+				C86D8C702C254B5500E91168 /* AnalysisPage.swift */,
+				C88F31152C2C30E0008EBD60 /* HomePage.swift */,
+			);
+			path = HomeScreen;
+			sourceTree = "<group>";
+		};
+		C8C6A4502C2C8A9500B91E5A /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				C8C6A44A2C2C845700B91E5A /* RegisterViewModel.swift */,
+				C8C6A4482C2C7DE800B91E5A /* LoginViewModel.swift */,
+				C8C6A4512C2C8ABD00B91E5A /* MainViewModel.swift */,
+				C8C6A4542C2C92D400B91E5A /* HomeViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		C8C6A4532C2C8E9E00B91E5A /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				C8C6A44C2C2C86F800B91E5A /* User.swift */,
+				C86D8C722C25574900E91168 /* Event.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		C8CA49B42C2184370013A1A4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C86D8C6A2C25487E00E91168 /* HomeScreen.swift */,
+				C86D8C6F2C254A8A00E91168 /* HomeScreen */,
+				C86CDE482C1D80D50029ECD1 /* JoinPage.swift */,
+				C8C9AE442C1FD0F2003C24DE /* RegisterPage.swift */,
+				C88F31172C2C7962008EBD60 /* LoginPage.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +209,15 @@
 			dependencies = (
 			);
 			name = "Just-Salmon_App";
+			packageProductDependencies = (
+				C8FE44E22C2210230088962E /* FirebaseAuth */,
+				C8FE44E42C2210230088962E /* FirebaseFirestoreSwift */,
+				C8FE44E62C2210230088962E /* FirebaseStorage */,
+				C8FE44EB2C22A07B0088962E /* GoogleSignIn */,
+				C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */,
+				C809D2D92C22A5F900C1959B /* FirebaseAnalytics */,
+				C88F31132C2C2148008EBD60 /* MijickCalendarView */,
+			);
 			productName = "Just-Salmon_App";
 			productReference = C83231432C1408580049D3B9 /* Just-Salmon_App.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +246,11 @@
 				Base,
 			);
 			mainGroup = C832313A2C1408580049D3B9;
+			packageReferences = (
+				C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
+				C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */,
+			);
 			productRefGroup = C83231442C1408580049D3B9 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +267,7 @@
 			files = (
 				C832314E2C1408590049D3B9 /* Preview Assets.xcassets in Resources */,
 				C832314B2C1408590049D3B9 /* Assets.xcassets in Resources */,
+				C809D2D72C22A5CE00C1959B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +278,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C8C6A4552C2C92D400B91E5A /* HomeViewModel.swift in Sources */,
+				C86D8C672C253D3E00E91168 /* CalendarPage.swift in Sources */,
+				C8C6A44B2C2C845700B91E5A /* RegisterViewModel.swift in Sources */,
+				C86D8C732C25574900E91168 /* Event.swift in Sources */,
+				C86D8C6D2C254A5000E91168 /* NewEventPage.swift in Sources */,
+				C8C6A44D2C2C86F800B91E5A /* User.swift in Sources */,
+				C8965A052C21AADF000804A2 /* TimerPage.swift in Sources */,
 				C83231492C1408580049D3B9 /* ContentView.swift in Sources */,
-				C83231472C1408580049D3B9 /* Just_Salmon_AppApp.swift in Sources */,
+				C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */,
+				C8C6A4492C2C7DE800B91E5A /* LoginViewModel.swift in Sources */,
+				C88F31182C2C7962008EBD60 /* LoginPage.swift in Sources */,
+				C8C6A44F2C2C883700B91E5A /* Extension.swift in Sources */,
+				C86D8C6B2C25487E00E91168 /* HomeScreen.swift in Sources */,
+				C88F31162C2C30E0008EBD60 /* HomePage.swift in Sources */,
+				C86D8C712C254B5500E91168 /* AnalysisPage.swift in Sources */,
+				C86D8C692C253E0000E91168 /* Date+Extension.swift in Sources */,
+				C86CDE492C1D80D50029ECD1 /* JoinPage.swift in Sources */,
+				C8C9AE452C1FD0F2003C24DE /* RegisterPage.swift in Sources */,
+				C8C6A4522C2C8ABD00B91E5A /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -272,13 +430,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Just-Salmon_App/Preview Content\"";
+				DEVELOPMENT_TEAM = 29UL8Z3V96;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Just-Salmon-App-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -300,13 +462,17 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Just-Salmon_App/Preview Content\"";
+				DEVELOPMENT_TEAM = 29UL8Z3V96;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Just-Salmon-App-Info.plist";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -342,6 +508,71 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Mijick/CalendarView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+		C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.28.0;
+			};
+		};
+		C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C809D2D92C22A5F900C1959B /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		C88F31132C2C2148008EBD60 /* MijickCalendarView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */;
+			productName = MijickCalendarView;
+		};
+		C8FE44E22C2210230088962E /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		C8FE44E42C2210230088962E /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		C8FE44E62C2210230088962E /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		C8FE44EB2C22A07B0088962E /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
+		C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignInSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C832313B2C1408580049D3B9 /* Project object */;
 }
