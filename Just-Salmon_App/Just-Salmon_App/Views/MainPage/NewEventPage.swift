@@ -12,22 +12,22 @@ struct NewEventPage: View {
   @State var Event: Event
   var onSave: (Event) -> Void
   
-  @State private var date = Date.now
+  @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
   @State private var test = "" //temporary, test only
   var body: some View {
     NavigationStack{
       Form {
         Section{
-          TextField("Title", text: $Event.id)
+          TextField("Title", text: $Event.name)
           TextField("Catagory", text: $Event.catagory)
           //TextField("Subcatagory", text: $Event.subcatagoty)
           TextField("Subcatagory", text: $test)
         }
         
         Section {
-          DatePicker("Start", selection: $date)
-          DatePicker("End", selection: $date)
+          DatePicker("Start", selection: $currentDate)
+          DatePicker("End", selection: $currentDate)
           Picker("Repeat",selection: $index) {
             Text("Never").tag(0)
             Text("Every Day").tag(1)

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct HomeScreen: View {
+struct MainPage: View {
   @State var tab: Int = 3
   
   var body: some View {
@@ -42,5 +42,5 @@ struct HomeScreen: View {
 }
 
 #Preview {
-  HomeScreen()
+  MainPage()
 }

@@ -29,7 +29,7 @@ struct TimerPage: View {
             Circle()
               .stroke(Color("MainColor"), style: StrokeStyle(lineWidth: 5, lineCap: .round, dash: [0.2, 15], dashPhase: 0))
             Circle()
-              .trim(from: 0,to: CGFloat(1 - (timeRemaining / 100)))
+              .trim(from: 0,to: CGFloat(1 - (timeRemaining / 1168) + 0.25))
               .stroke(Color("MainColor"), style: StrokeStyle(lineWidth: 5, lineCap: .round, lineJoin: .round))
               .rotationEffect(.degrees(-90))
             Circle()
@@ -37,7 +37,7 @@ struct TimerPage: View {
               .fill(.white)
               .frame(width: 14, height: 14)
               .offset(CGSize(width: 0, height: -125))
-              .rotationEffect(Angle.degrees((Double(1 - (timeRemaining / 1168)) * 360)))
+              .rotationEffect(Angle.degrees((Double(1 - (timeRemaining / 1168) + 0.25) * 360)))
             VStack {
               Text(formattedTime())
                 .font(.system(size: 48, weight: .bold))

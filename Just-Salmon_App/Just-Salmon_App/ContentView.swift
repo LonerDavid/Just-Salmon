@@ -12,7 +12,7 @@ struct ContentView: View {
   
   var body: some View {
     if viewModel.isSignIn, !viewModel.currentUserId.isEmpty {
-      HomeScreen()
+      MainPage()
     } else {
       JoinPage()
     }
