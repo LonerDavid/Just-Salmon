@@ -9,19 +9,27 @@ import SwiftUI
 
 struct NewEventPage: View {
   @Environment(\.dismiss) var dismiss
-  @State var Event: Event
+  @State var event: Event
   var onSave: (Event) -> Void
+//  @State var tempSubcatagory: String
+  
   
   @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
   @State private var test = "" //temporary, test only
+  
+  
+  
   var body: some View {
     NavigationStack{
       Form {
         Section{
-          TextField("Title", text: $Event.name)
-          TextField("Catagory", text: $Event.catagory)
-          //TextField("Subcatagory", text: $Event.subcatagoty)
+          TextField("Title", text: $event.name)
+          Picker("Catagory", selection: $event.catagory) {
+              ForEach(Catagory.allCases, id: \.self) { state in
+                  Text(state.description)
+              }
+          }
           TextField("Subcatagory", text: $test)
         }
         
@@ -50,7 +58,7 @@ struct NewEventPage: View {
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
           Button {
-            onSave(Event)
+            onSave(event)
             dismiss()
           } label: {
             Text("Save")
@@ -71,5 +79,5 @@ struct NewEventPage: View {
 }
 
 #Preview {
-  NewEventPage(Event: .stub) {_ in}
+  NewEventPage(event: .stub) {_ in}
 }

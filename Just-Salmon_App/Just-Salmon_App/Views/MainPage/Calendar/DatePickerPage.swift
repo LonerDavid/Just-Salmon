@@ -20,6 +20,15 @@ struct DatePickerPage: View {
       let days: [String] =
       ["S", "M", "T", "W", "T", "F", "S"]
       HStack {
+        VStack(alignment: .leading, spacing: 5) {
+          Text(extraDate()[1])
+            .font(.caption)
+            .fontWeight(.regular)
+          Text(extraDate()[0])
+            .font(.largeTitle)
+            .fontWeight(.bold)
+        }
+        Spacer()
         Button {
           withAnimation {
             currentMonth -= 1
@@ -28,18 +37,8 @@ struct DatePickerPage: View {
           //            Image(systemName: "chevron.left")
           //              .font(.title)
           Image(systemName: "arrowtriangle.left.fill")
-            .font(.largeTitle)
+            .font(.title)
         }
-        Spacer()
-        VStack(alignment: .center, spacing: 10) {
-          Text(extraDate()[0])
-            .font(.largeTitle)
-            .fontWeight(.bold)
-          Text(extraDate()[1])
-            .font(.caption)
-            .fontWeight(.regular)
-        }
-        Spacer()
         Button {
           withAnimation {
             currentMonth += 1
@@ -48,7 +47,16 @@ struct DatePickerPage: View {
           //            Image(systemName: "chevron.right")
           //              .font(.title)
           Image(systemName: "arrowtriangle.right.fill")
-            .font(.largeTitle)
+            .font(.title)
+        }
+        
+        Menu {
+          Button("Monthly Calendar", action: monthlyCalendar)
+          Button("Weekly Calendar", action: weeklyCalendar)
+          Button("Gantt Chart", action: ganttChart)
+        }label: {
+        Image(systemName: "calendar")
+          .font(.title)
         }
       }
       .padding(.top, 20)
@@ -58,31 +66,31 @@ struct DatePickerPage: View {
       //calendar view
       VStack{
         HStack (spacing: 10){
-        ForEach(days, id: \.self) {day in
-          Text(day)
-            .font(.callout)
-            .fontWeight(.semibold)
-            .frame(maxWidth: .infinity)
+          ForEach(days, id: \.self) {day in
+            Text(day)
+              .font(.callout)
+              .fontWeight(.semibold)
+              .frame(maxWidth: .infinity)
+          }
+          
         }
+        let columns = Array(repeating: GridItem(.flexible()), count: 7)
         
-      }
-      let columns = Array(repeating: GridItem(.flexible()), count: 7)
-      
-      LazyVGrid(columns: columns, spacing: 15) {
-        ForEach(extractDate()) { value in
-          CardView(value: value)
-            .background(
-              Capsule()
-                .fill(Color("ThemeColorOrange"))
-                .padding(.horizontal, 8)
-                .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-            )
-            .onTapGesture {
-              currentDate = value.date
-            }
+        LazyVGrid(columns: columns, spacing: 15) {
+          ForEach(extractDate()) { value in
+            CardView(value: value)
+              .background(
+                Capsule()
+                  .fill(Color("ThemeColorOrange"))
+                  .padding(.horizontal, 8)
+                  .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
+              )
+              .onTapGesture {
+                currentDate = value.date
+              }
+          }
         }
       }
-    }
       .padding(.bottom, 10)
       .padding(.horizontal, 5)
       
@@ -203,7 +211,7 @@ struct DatePickerPage: View {
     VStack {
       if value.day != -1 {
         //
-        if let event = events.first(where: { event in
+        if let event = tempEvents.first(where: { event in
           return isSameDay(date1: event.eventDate, date2: value.date)
         }){
           Text("\(value.day)")
@@ -266,6 +274,16 @@ struct DatePickerPage: View {
       days.insert(DateValue(day: -1, date: Date()), at: 0)
     }
     return days
+  }
+  
+  func monthlyCalendar() {
+    
+  }
+  func weeklyCalendar() {
+    
+  }
+  func ganttChart() {
+    
   }
 }
 

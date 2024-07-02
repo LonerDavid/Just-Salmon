@@ -10,7 +10,7 @@ import SwiftUI
 struct TimerPage: View {
   @State private var timeRemaining: TimeInterval = 1168
   @State private var timer: Timer?
-  @State private var isRunning: Bool = false
+  @State private var isRunning: Bool = true
   @State private var percentage1: Double = 0.5
   @State private var percentage2: Double = 0
   @State private var percentage3: Double = 0.75
@@ -19,9 +19,10 @@ struct TimerPage: View {
   let spaceLength: CGFloat = 2.0 * Double.pi * 125
   
   
+  
   var body: some View {
     NavigationStack {
-      ZStack{
+      ZStack {
         LinearGradient(gradient: Gradient(colors: [Color("MainColorLight"), Color.white]), startPoint: .top, endPoint: .bottom)
           .ignoresSafeArea()
         VStack(alignment: .center) {
@@ -45,24 +46,6 @@ struct TimerPage: View {
               Text("Work")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundStyle(Color("MainColor"))
-              
-//              Button {//test only
-//                isRunning.toggle()
-//                if isRunning {
-//                  startTimer()
-//                }
-//                else {
-//                  stopTimer()
-//                }
-//              } label: {
-//                Image(systemName: isRunning ? "stop.fill" : "play.fill")
-//                  .resizable()
-//                  .scaledToFill()
-//                  .foregroundStyle(.foreground)
-//                  .frame(width: 30, height: 30)
-//                  .font(.largeTitle)
-//              }
-              
             }
           }
           .frame(maxWidth: 250)
@@ -220,6 +203,9 @@ struct TimerPage: View {
           
         }
       }
+    }
+    .onAppear {
+      startTimer()
     }
   }
   

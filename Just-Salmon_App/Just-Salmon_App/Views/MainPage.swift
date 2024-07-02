@@ -8,39 +8,70 @@
 import SwiftUI
 
 struct MainPage: View {
-  @State var tab: Int = 3
+  enum Tab {
+    case timer
+    case calendar
+    case analysis
+    case home
+  }
+  
+  @State var tab: Tab = .calendar
+  @State var isPresent: Bool = false
   
   var body: some View {
-    TabView (selection: $tab){
-      TimerPage().tabItem {
-        Image(systemName: "timer")
-        Text("Timer")
-      }.id(0)
-      CalendarPage()
-        .tabItem {
-          Image(systemName: "calendar")
-          Text("Calendar")
-        }.id(1)
-      NewEventPage(Event: .stub) {_ in}
-        .tabItem {
-          Image(systemName: "plus.circle.fill")
-          Text("Add")
-        }.id(2)
-      AnalysisPage().tabItem {
-        Image(systemName: "chart.bar.xaxis.ascending")
-        Text("Analysis")
-      }.id(3)
-      HomePage().tabItem {
-        Image(systemName: "house")
+    ZStack(alignment: .bottom) {
+      TabView(selection: $tab) {
+        TimerPage().tabItem {
+          Image(systemName: "timer")
+          Text("Timer")
+        }
+        .id(Tab.timer)
+        
+        CalendarPage()
+          .tabItem {
+            Image(systemName: "calendar")
+            Text("Calendar")
+          }
+          .id(Tab.calendar)
+        
+        Spacer()
+        
+        AnalysisPage()
+          .tabItem {
+            Image(systemName: "chart.bar.xaxis.ascending")
+            Text("Analysis")
+          }
+          .id(Tab.analysis)
+        
+        HomePage()
+          .tabItem {
+            Image(systemName: "house")
+              .resizable()
+              .scaledToFit()
+              .frame(width: 35, height: 35)
+            Text("Home")
+          }
+          .id(Tab.home)
+      }
+      
+      Button {
+        isPresent = true
+      } label: {
+        Image(systemName: "plus.circle.fill")
           .resizable()
-          .scaledToFit()
-          .frame(width: 35, height: 35)
-        Text("Home")
-      }.id(4)
+          .frame(width: 50, height: 50)
+      }
+      .frame(width: 80, height: 50)
+      .background(.clear)
+    }
+    .sheet(
+      isPresented: $isPresent
+    ) {
+      NewEventPage(event: .stub) { _ in }
     }
   }
 }
 
 #Preview {
-  MainPage()
+    MainPage()
 }

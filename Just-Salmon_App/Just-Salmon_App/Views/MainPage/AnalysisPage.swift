@@ -74,9 +74,8 @@ struct AnalysisPage: View {
                 //                    Text("\(item.category)")
                 //                  }
               }
-              .chartLegend(alignment: .center, spacing: 16)
-//              .aspectRatio(contentMode: .fit)
-              .frame(width: .infinity, height: 220)
+
+              .frame(height: 220)
               .padding()
             }
             .background(RoundedRectangle(cornerRadius: 20)
@@ -114,6 +113,7 @@ struct AnalysisPage: View {
           }
           .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
           .frame(maxHeight: 350)
+          
           VStack {
             HStack {
               Text("Recommendation")

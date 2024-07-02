@@ -7,7 +7,6 @@
 
 import FirebaseCore
 import FirebaseAuth
-import GoogleSignIn
 import Foundation
 
 class LoginViewModel: ObservableObject {

@@ -11,6 +11,8 @@
 		C809D2DA2C22A5F900C1959B /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = C809D2D92C22A5F900C1959B /* FirebaseAnalytics */; };
 		C814FF252C2EF58100692EE5 /* DatePickerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814FF242C2EF58100692EE5 /* DatePickerPage.swift */; };
 		C814FF272C2EFFE300692EE5 /* DateValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = C814FF262C2EFFE300692EE5 /* DateValue.swift */; };
+		C81E3DDA2C339AE200818359 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E3DD92C339AE200818359 /* Event.swift */; };
+		C81E3DDC2C339BEF00818359 /* GanttChartPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C81E3DDB2C339BEF00818359 /* GanttChartPage.swift */; };
 		C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231462C1408580049D3B9 /* Just_Salmon_App.swift */; };
 		C83231492C1408580049D3B9 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C83231482C1408580049D3B9 /* ContentView.swift */; };
 		C832314B2C1408590049D3B9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C832314A2C1408590049D3B9 /* Assets.xcassets */; };
@@ -21,8 +23,7 @@
 		C86D8C6B2C25487E00E91168 /* MainPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C6A2C25487E00E91168 /* MainPage.swift */; };
 		C86D8C6D2C254A5000E91168 /* NewEventPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C6C2C254A5000E91168 /* NewEventPage.swift */; };
 		C86D8C712C254B5500E91168 /* AnalysisPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C702C254B5500E91168 /* AnalysisPage.swift */; };
-		C86D8C732C25574900E91168 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C722C25574900E91168 /* Event.swift */; };
-		C88F31142C2C2148008EBD60 /* MijickCalendarView in Frameworks */ = {isa = PBXBuildFile; productRef = C88F31132C2C2148008EBD60 /* MijickCalendarView */; };
+		C86D8C732C25574900E91168 /* TempEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C86D8C722C25574900E91168 /* TempEvent.swift */; };
 		C88F31162C2C30E0008EBD60 /* HomePage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F31152C2C30E0008EBD60 /* HomePage.swift */; };
 		C88F31182C2C7962008EBD60 /* LoginPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88F31172C2C7962008EBD60 /* LoginPage.swift */; };
 		C8965A052C21AADF000804A2 /* TimerPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8965A042C21AADF000804A2 /* TimerPage.swift */; };
@@ -36,8 +37,6 @@
 		C8FE44E32C2210230088962E /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E22C2210230088962E /* FirebaseAuth */; };
 		C8FE44E52C2210230088962E /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E42C2210230088962E /* FirebaseFirestoreSwift */; };
 		C8FE44E72C2210230088962E /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44E62C2210230088962E /* FirebaseStorage */; };
-		C8FE44EC2C22A07B0088962E /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44EB2C22A07B0088962E /* GoogleSignIn */; };
-		C8FE44EE2C22A07B0088962E /* GoogleSignInSwift in Frameworks */ = {isa = PBXBuildFile; productRef = C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +44,8 @@
 		C809D2DE2C22A78600C1959B /* Just-Salmon-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Just-Salmon-App-Info.plist"; sourceTree = SOURCE_ROOT; };
 		C814FF242C2EF58100692EE5 /* DatePickerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatePickerPage.swift; sourceTree = "<group>"; };
 		C814FF262C2EFFE300692EE5 /* DateValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateValue.swift; sourceTree = "<group>"; };
+		C81E3DD92C339AE200818359 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C81E3DDB2C339BEF00818359 /* GanttChartPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GanttChartPage.swift; sourceTree = "<group>"; };
 		C83231432C1408580049D3B9 /* Just-Salmon_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Just-Salmon_App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C83231462C1408580049D3B9 /* Just_Salmon_App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Just_Salmon_App.swift; sourceTree = "<group>"; };
 		C83231482C1408580049D3B9 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -56,7 +57,7 @@
 		C86D8C6A2C25487E00E91168 /* MainPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPage.swift; sourceTree = "<group>"; };
 		C86D8C6C2C254A5000E91168 /* NewEventPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewEventPage.swift; sourceTree = "<group>"; };
 		C86D8C702C254B5500E91168 /* AnalysisPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysisPage.swift; sourceTree = "<group>"; };
-		C86D8C722C25574900E91168 /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
+		C86D8C722C25574900E91168 /* TempEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempEvent.swift; sourceTree = "<group>"; };
 		C88F31152C2C30E0008EBD60 /* HomePage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePage.swift; sourceTree = "<group>"; };
 		C88F31172C2C7962008EBD60 /* LoginPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPage.swift; sourceTree = "<group>"; };
 		C8965A042C21AADF000804A2 /* TimerPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerPage.swift; sourceTree = "<group>"; };
@@ -74,11 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C88F31142C2C2148008EBD60 /* MijickCalendarView in Frameworks */,
-				C8FE44EE2C22A07B0088962E /* GoogleSignInSwift in Frameworks */,
 				C8FE44E32C2210230088962E /* FirebaseAuth in Frameworks */,
 				C809D2DA2C22A5F900C1959B /* FirebaseAnalytics in Frameworks */,
-				C8FE44EC2C22A07B0088962E /* GoogleSignIn in Frameworks */,
 				C8FE44E52C2210230088962E /* FirebaseFirestoreSwift in Frameworks */,
 				C8FE44E72C2210230088962E /* FirebaseStorage in Frameworks */,
 			);
@@ -106,6 +104,7 @@
 			isa = PBXGroup;
 			children = (
 				C814FF242C2EF58100692EE5 /* DatePickerPage.swift */,
+				C81E3DDB2C339BEF00818359 /* GanttChartPage.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -190,7 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				C8C6A44C2C2C86F800B91E5A /* User.swift */,
-				C86D8C722C25574900E91168 /* Event.swift */,
+				C86D8C722C25574900E91168 /* TempEvent.swift */,
+				C81E3DD92C339AE200818359 /* Event.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -227,10 +227,7 @@
 				C8FE44E22C2210230088962E /* FirebaseAuth */,
 				C8FE44E42C2210230088962E /* FirebaseFirestoreSwift */,
 				C8FE44E62C2210230088962E /* FirebaseStorage */,
-				C8FE44EB2C22A07B0088962E /* GoogleSignIn */,
-				C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */,
 				C809D2D92C22A5F900C1959B /* FirebaseAnalytics */,
-				C88F31132C2C2148008EBD60 /* MijickCalendarView */,
 			);
 			productName = "Just-Salmon_App";
 			productReference = C83231432C1408580049D3B9 /* Just-Salmon_App.app */;
@@ -262,8 +259,6 @@
 			mainGroup = C832313A2C1408580049D3B9;
 			packageReferences = (
 				C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
-				C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */,
 			);
 			productRefGroup = C83231442C1408580049D3B9 /* Products */;
 			projectDirPath = "";
@@ -296,13 +291,15 @@
 				C86D8C672C253D3E00E91168 /* CalendarPage.swift in Sources */,
 				C814FF272C2EFFE300692EE5 /* DateValue.swift in Sources */,
 				C8C6A44B2C2C845700B91E5A /* RegisterViewModel.swift in Sources */,
-				C86D8C732C25574900E91168 /* Event.swift in Sources */,
+				C86D8C732C25574900E91168 /* TempEvent.swift in Sources */,
 				C86D8C6D2C254A5000E91168 /* NewEventPage.swift in Sources */,
 				C8C6A44D2C2C86F800B91E5A /* User.swift in Sources */,
 				C8965A052C21AADF000804A2 /* TimerPage.swift in Sources */,
+				C81E3DDA2C339AE200818359 /* Event.swift in Sources */,
 				C83231492C1408580049D3B9 /* ContentView.swift in Sources */,
 				C83231472C1408580049D3B9 /* Just_Salmon_App.swift in Sources */,
 				C8C6A4492C2C7DE800B91E5A /* LoginViewModel.swift in Sources */,
+				C81E3DDC2C339BEF00818359 /* GanttChartPage.swift in Sources */,
 				C88F31182C2C7962008EBD60 /* LoginPage.swift in Sources */,
 				C8C6A44F2C2C883700B91E5A /* Extension.swift in Sources */,
 				C86D8C6B2C25487E00E91168 /* MainPage.swift in Sources */,
@@ -526,28 +523,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Mijick/CalendarView.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 10.28.0;
-			};
-		};
-		C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -557,11 +538,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseAnalytics;
-		};
-		C88F31132C2C2148008EBD60 /* MijickCalendarView */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C88F31122C2C2148008EBD60 /* XCRemoteSwiftPackageReference "CalendarView" */;
-			productName = MijickCalendarView;
 		};
 		C8FE44E22C2210230088962E /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
@@ -577,16 +553,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = C8FE44E12C2210230088962E /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseStorage;
-		};
-		C8FE44EB2C22A07B0088962E /* GoogleSignIn */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignIn;
-		};
-		C8FE44ED2C22A07B0088962E /* GoogleSignInSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C8FE44EA2C22A07B0088962E /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
-			productName = GoogleSignInSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
