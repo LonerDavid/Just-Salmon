@@ -25,8 +25,8 @@ struct NewEventPage: View {
       Form {
         Section{
           TextField("Title", text: $event.name)
-          Picker("Catagory", selection: $event.catagory) {
-              ForEach(Catagory.allCases, id: \.self) { state in
+          Picker("Catagory", selection: $event.category) {
+              ForEach(Category.allCases, id: \.self) { state in
                   Text(state.description)
               }
           }

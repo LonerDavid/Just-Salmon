@@ -161,13 +161,13 @@ struct AnalysisPage: View {
   }
 }
 
-struct Category {
+struct Cat {
   var category: String
   var count: Int
   var color: Color
 }
 
-let data: [Category] = [
+let data: [Cat] = [
   .init(category: "Campus", count: 5, color: .blue),
   .init(category: "Social", count: 5, color: .mint),
   .init(category: "Sleep", count: 5, color: .purple),

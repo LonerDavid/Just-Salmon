@@ -51,12 +51,27 @@ struct DatePickerPage: View {
         }
         
         Menu {
-          Button("Monthly Calendar", action: monthlyCalendar)
-          Button("Weekly Calendar", action: weeklyCalendar)
-          Button("Gantt Chart", action: ganttChart)
+          NavigationLink {
+            CalendarPage()
+              .navigationBarBackButtonHidden()
+          } label: {
+            Text("Monthly Calendar")
+          }
+          NavigationLink {
+            CalendarPage()
+              .navigationBarBackButtonHidden()
+          } label: {
+            Text("Weekly Calendar")
+          }
+          NavigationLink {
+            GanttChartPage(events: .stub, startDate: Date())
+              .navigationBarBackButtonHidden()
+          } label: {
+            Text("Gantt Chart")
+          }
         }label: {
-        Image(systemName: "calendar")
-          .font(.title)
+          Image(systemName: "calendar")
+            .font(.title)
         }
       }
       .padding(.top, 20)
