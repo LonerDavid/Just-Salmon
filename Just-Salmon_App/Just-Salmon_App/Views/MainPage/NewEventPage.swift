@@ -30,7 +30,7 @@ struct NewEventPage: View {
     NavigationStack{
       Form {
         Section{
-          TextField("Title", text: $Event.name)
+          TextField("Title", text: $event.name)
             .focused($focusField, equals: .title)
           Picker("Catagory", selection: $event.category) {
               ForEach(Category.allCases, id: \.self) { state in
