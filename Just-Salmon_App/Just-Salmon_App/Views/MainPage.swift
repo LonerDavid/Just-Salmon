@@ -36,7 +36,7 @@ struct MainPage: View {
         
         Spacer()
         
-        AnalysisPage()
+        AnalysisPage(data: data)
           .tabItem {
             Image(systemName: "chart.bar.xaxis.ascending")
             Text("Analysis")

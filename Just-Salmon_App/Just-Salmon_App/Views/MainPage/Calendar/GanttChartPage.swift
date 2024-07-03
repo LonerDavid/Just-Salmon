@@ -8,7 +8,7 @@ import SwiftUI
 
 struct GanttChartPage: View {
   @State private var currentDate: Date
-  let events: [Event]
+  @State var events: [Event]
   
   private let dayWidth: CGFloat = 50
   private let rowHeight: CGFloat = 40
@@ -148,7 +148,7 @@ struct GanttChartPage: View {
   }
   
   private func eventBar(for event: Event) -> some View {
-    guard let startDate = event.startTime?.date, let endDate = event.endTime?.date else {
+    guard let startDate = event.startTime?.dateUsingCurrentCalendar, let endDate = event.endTime?.dateUsingCurrentCalendar else {
       return AnyView(EmptyView())
     }
     
@@ -165,10 +165,10 @@ struct GanttChartPage: View {
     return AnyView(
       ZStack(alignment: .center) {
         RoundedRectangle(cornerRadius: cornerRadius)
-          .fill(event.category.color)
+          .fill(event.category.color.opacity(0.5))
         
         Text(event.name)
-          .font(.caption2)
+          .font(.caption)
           .foregroundColor(.primary)
         //          .padding(.leading, 5)
           .lineLimit(1)
@@ -187,7 +187,7 @@ struct GanttChartPage: View {
   private func eventsInCurrentMonth() -> [Event] {
     let monthEnd = Calendar.current.date(byAdding: .month, value: 1, to: monthStart)!
     return events.filter { event in
-      guard let startDate = event.startTime?.date, let endDate = event.endTime?.date else {
+      guard let startDate = event.startTime?.dateUsingCurrentCalendar, let endDate = event.endTime?.dateUsingCurrentCalendar else {
         return false
       }
       return startDate < monthEnd && endDate > monthStart
@@ -230,6 +230,12 @@ struct GanttChartPage: View {
       currentDate = newDate
     }
   }
+}
+
+extension DateComponents {
+    var dateUsingCurrentCalendar: Date? {
+        Calendar.current.date(from: self)
+    }
 }
 
 #Preview {
