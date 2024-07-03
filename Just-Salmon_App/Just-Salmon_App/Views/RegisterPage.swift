@@ -10,10 +10,11 @@ import FirebaseAuth
 
 struct RegisterPage: View {
   @StateObject var viewModel = RegisterViewModel()
- 
+  
   // MARK: 是不是應該要增加輸入使用者姓名的地方
   var body: some View{
     NavigationStack {
+      
       ZStack {
       LinearGradient(gradient: Gradient(colors: [Color("MainColor"), Color.white]), startPoint: .top, endPoint: .bottom)
         .ignoresSafeArea()

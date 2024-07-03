@@ -6,7 +6,6 @@
 //
 import FirebaseAuth
 import FirebaseFirestore
-import GoogleSignIn
 import Foundation
 
 class HomeViewModel: ObservableObject {

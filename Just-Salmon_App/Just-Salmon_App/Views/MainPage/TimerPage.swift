@@ -19,9 +19,10 @@ struct TimerPage: View {
   let spaceLength: CGFloat = 2.0 * Double.pi * 125
   
   
+  
   var body: some View {
     NavigationStack {
-      ZStack{
+      ZStack {
         LinearGradient(gradient: Gradient(colors: [Color("MainColorLight"), Color.white]), startPoint: .top, endPoint: .bottom)
           .ignoresSafeArea()
         VStack(alignment: .center) {
@@ -45,143 +46,131 @@ struct TimerPage: View {
               Text("Work")
                 .font(.system(size: 20, weight: .bold))
                 .foregroundStyle(Color("MainColor"))
-              
-//              Button {//test only
-//                isRunning.toggle()
-//                if isRunning {
-//                  startTimer()
-//                }
-//                else {
-//                  stopTimer()
-//                }
-//              } label: {
-//                Image(systemName: isRunning ? "stop.fill" : "play.fill")
-//                  .resizable()
-//                  .scaledToFill()
-//                  .foregroundStyle(.foreground)
-//                  .frame(width: 30, height: 30)
-//                  .font(.largeTitle)
-//              }
-              
             }
           }
           .frame(maxWidth: 250)
           
-          HStack() {
-            Text("Choose an event")
-              .font(.system(size: 24, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-            Spacer()
-          }
-          .padding()
-          
-          VStack(alignment: .center, spacing: 5) {
-            NavigationLink(value: Destination.timerPage){
-              HStack(spacing: 10) {
-                Image(systemName: "suitcase")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 24, height: 24, alignment: .leading)
-                Text("Work")
-                  .padding(.leading, 10)
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                Text("2/4 hr")
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .trailing)
-                                
-              }
-              .padding()
-              .frame(width: 360, height: 56)
-              .background(
-                GeometryReader { proxy in
-                  Capsule(style: .continuous)
-                    .fill(Color("ThemeColorRed"))
-                    .frame(width: (proxy.size.width - 60) * percentage1 + 60)
-                }
-              )
-              .font(.title)
-              .foregroundStyle(.white)
-              .overlay(
-                Capsule(style: .continuous)
-                  .stroke(Color("ThemeColorRed"), lineWidth: 2)
-              )
+          VStack {
+            HStack() {
+              Text("Choose an event")
+                .font(.system(size: 24, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+              Spacer()
             }
-          }
-          
-          VStack(alignment: .center, spacing: 5) {
-            NavigationLink(value: Destination.timerPage){
-              HStack(spacing: 10) {
-                Image(systemName: "person")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 24, height: 24, alignment: .leading)
-                Text("Social")
-                  .padding(.leading, 10)
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                Text("0/4 hr")
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .trailing)
-                                
-              }
-              .padding()
-              .frame(width: 360, height: 56)
-              .background(
-                GeometryReader { proxy in
-                  Capsule(style: .continuous)
-                    .fill(Color("ThemeColorCyan"))
-                    .frame(width: (proxy.size.width - 60) * percentage2 + 60)
+            .padding(.vertical)
+            
+            VStack(alignment: .center, spacing: 5) {
+              NavigationLink(value: Destination.timerPage){
+                HStack(spacing: 10) {
+                  Image(systemName: "suitcase")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24, alignment: .leading)
+                  Text("Work")
+                    .padding(.leading, 10)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                  Text("2/4 hr")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                  
                 }
-              )
-              .font(.title)
-              .foregroundStyle(.white)
-              .overlay(
-                Capsule(style: .continuous)
-                  .stroke(Color("ThemeColorCyan"), lineWidth: 2)
-              )
+                .padding()
+                .frame(height: 56)
+                .frame(maxWidth: .infinity)
+                .background(
+                  GeometryReader { proxy in
+                    Capsule(style: .continuous)
+                      .fill(Color("ThemeColorRed"))
+                      .frame(width: (proxy.size.width - 60) * percentage1 + 60)
+                  }
+                )
+                .font(.title)
+                .foregroundStyle(.white)
+                .overlay(
+                  Capsule(style: .continuous)
+                    .stroke(Color("ThemeColorRed"), lineWidth: 2)
+                )
+              }
             }
-          }
+            
+            VStack(alignment: .center, spacing: 5) {
+              NavigationLink(value: Destination.timerPage){
+                HStack(spacing: 10) {
+                  Image(systemName: "person")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24, alignment: .leading)
+                  Text("Social")
+                    .padding(.leading, 10)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                  Text("0/4 hr")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                  
+                }
+                .padding()
+                .frame(height: 56)
+                .frame(maxWidth: .infinity)
+                .background(
+                  GeometryReader { proxy in
+                    Capsule(style: .continuous)
+                      .fill(Color("ThemeColorCyan"))
+                      .frame(width: (proxy.size.width - 60) * percentage2 + 60)
+                  }
+                )
+                .font(.title)
+                .foregroundStyle(.white)
+                .overlay(
+                  Capsule(style: .continuous)
+                    .stroke(Color("ThemeColorCyan"), lineWidth: 2)
+                )
+              }
+            }
 
-          VStack(alignment: .center, spacing: 20) {
-            NavigationLink(value: Destination.timerPage){
-              HStack(spacing: 10) {
-                Image(systemName: "dumbbell")
-                  .resizable()
-                  .scaledToFit()
-                  .frame(width: 24, height: 24, alignment: .leading)
-                Text("Exercise")
-                  .padding(.leading, 10)
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .leading)
-                Text("3/4 hr")
-                  .font(.system(size: 20, weight: .medium))
-                  .foregroundStyle(Color("TextColorLightGray"))
-                  .frame(maxWidth: .infinity, alignment: .trailing)
-                                
-              }
-              .padding()
-              .frame(width: 360, height: 56)
-              .background(
-                GeometryReader { proxy in
-                  Capsule(style: .continuous)
-                    .fill(Color("ThemeColorOrange"))
-                    .frame(width: (proxy.size.width - 60) * percentage3 + 60)
+            VStack(alignment: .center, spacing: 20) {
+              NavigationLink(value: Destination.timerPage){
+                HStack(spacing: 10) {
+                  Image(systemName: "dumbbell")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 24, height: 24, alignment: .leading)
+                  Text("Exercise")
+                    .padding(.leading, 10)
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                  Text("3/4 hr")
+                    .font(.system(size: 20, weight: .medium))
+                    .foregroundStyle(Color("TextColorLightGray"))
+                    .frame(maxWidth: .infinity, alignment: .trailing)
+                                  
                 }
-              )
-              .font(.title)
-              .foregroundStyle(.white)
-              .overlay(
-                Capsule(style: .continuous)
-                  .stroke(Color("ThemeColorOrange"), lineWidth: 2)
-              )
+                .padding()
+                .frame(height: 56)
+                .frame(maxWidth: .infinity)
+                .background(
+                  GeometryReader { proxy in
+                    Capsule(style: .continuous)
+                      .fill(Color("ThemeColorOrange"))
+                      .frame(width: (proxy.size.width - 60) * percentage3 + 60)
+                  }
+                )
+                .font(.title)
+                .foregroundStyle(.white)
+                .overlay(
+                  Capsule(style: .continuous)
+                    .stroke(Color("ThemeColorOrange"), lineWidth: 2)
+                )
+              }
             }
           }
+          .padding(.horizontal)
         }
         .toolbar {
           //Still have to be modified in the future (lacking user's data)
@@ -207,7 +196,12 @@ struct TimerPage: View {
           //Still have to be modified in the future
           ToolbarItem(placement: .topBarTrailing){
             Button {
-              
+              if isRunning {
+                stopTimer()
+              } else {
+                startTimer()
+                isRunning = true
+              }
             } label: {
               Image(systemName: "bell.badge")
                 .resizable()

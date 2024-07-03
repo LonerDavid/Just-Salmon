@@ -9,7 +9,10 @@ import Charts
 import SwiftUI
 
 struct AnalysisPage: View {
-  @State var analysisPage: Bool = false
+  @State private var selectedAngle: Double?
+  @State private var currentDate: Date
+  let data: [Cat]
+  
   
   var body: some View {
     NavigationStack {
@@ -20,100 +23,132 @@ struct AnalysisPage: View {
         
         VStack(alignment:.center) {
           HStack {
+            VStack(alignment: .leading, spacing: 5) {
+              Text(yearString)
+                .font(.caption)
+                .fontWeight(.regular)
+              Text(monthString)
+                .font(.largeTitle)
+                .fontWeight(.bold)
+            }
+            Spacer()
             Button {
-              
+              withAnimation {
+                previousMonth()
+              }
             } label: {
-              //            Image(systemName: "chevron.left")
-              //              .font(.title)
+//              Image(systemName: "chevron.left")
+//                .font(.largeTitle)
               Image(systemName: "arrowtriangle.left.fill")
                 .font(.largeTitle)
             }
-            Spacer()
-            VStack(alignment: .center, spacing: 10) {
-//              Text(extraDate()[0])
-              Text("June") //temp
-                .font(.largeTitle)
-                .fontWeight(.bold)
-//              Text(extraDate()[1])
-              Text("2024") //temp
-                .font(.caption)
-                .fontWeight(.regular)
-            }
-            Spacer()
             Button {
-              
+              withAnimation {
+                nextMonth()
+              }
             }label: {
-              //            Image(systemName: "chevron.right")
-              //              .font(.title)
+//              Image(systemName: "chevron.right")
+//                .font(.largeTitle)
               Image(systemName: "arrowtriangle.right.fill")
                 .font(.largeTitle)
             }
           }
           .padding(.top, 20)
+          .padding(.bottom, 1)
           .padding(.horizontal, 20)
           
           TabView {
-            VStack {
+            VStack (spacing: 0){
               HStack {
                 Text("Time Allocation")
-                  .padding()
+                  .padding(.horizontal)
+                  .padding(.top)
                   .font(.title2)
                   .fontWeight(.medium)
                   .foregroundStyle(Color("ThemeColorRed"))
                 Spacer()
               }
-              
               Chart(data, id: \.category) { item in
                 SectorMark(
                   angle: .value("Count", item.count), innerRadius: .ratio(0.8), angularInset: 2
                 )
-                //                  .foregroundStyle(item.color)
                 .foregroundStyle(by: .value("Category", item.category))
+                .opacity(item.category == selectedItem?.category ? 1 : 0.5)
                 .cornerRadius(3)
-                //                  .annotation(position: .trailing) {
-                //                    Text("\(item.category)")
-                //                  }
               }
+              .chartForegroundStyleScale(
+                domain: data.map { $0.category },
+                range: data.map { $0.color }
+              )
               .chartLegend(alignment: .center, spacing: 16)
-//              .aspectRatio(contentMode: .fit)
-              .frame(width: .infinity, height: 220)
-              .padding()
+              .chartAngleSelection(value: $selectedAngle)
+              .frame(height: 220)
+              .padding(.vertical, 20)
+              .chartBackground { chartProxy in
+                GeometryReader { geometry in
+                  if let anchor = chartProxy.plotFrame {
+                    let frame = geometry[anchor]
+                    titleView
+                      .position(x: frame.midX, y: frame.midY)
+                  }
+                }
+              }
             }
+            .frame(maxHeight: 300)
             .background(RoundedRectangle(cornerRadius: 20)
               .fill(Color("ThemeColorPink")))
             .padding(.horizontal)
             
-            VStack {
+            VStack (spacing: 0){
               HStack {
                 Text("Progress Level")
-                  .padding()
+                  .padding(.top)
+                  .padding(.horizontal)
                   .font(.title2)
                   .fontWeight(.medium)
                   .foregroundStyle(Color("ThemeColorCyan"))
                 Spacer()
               }
-              
-              Chart(data, id: \.category) { item in
-                SectorMark(
-                  angle: .value("Count", item.count), innerRadius: .ratio(0.8), angularInset: 2
-                )
-                //                  .foregroundStyle(item.color)
-                .foregroundStyle(by: .value("Category", item.category))
-                .cornerRadius(3)
-                //                  .annotation(position: .trailing) {
-                //                    Text("\(item.category)")
-                //                  }
+              GeometryReader { geometry in
+                VStack(alignment: .leading, spacing: 0) {
+                  ForEach(data) { item in
+                    VStack {
+                      HStack {
+                        Text(item.category)
+                          .font(.callout.weight(.medium))
+                        Spacer()
+                        Text("\(item.count)" + "/12 hr")
+                          .font(.callout.weight(.medium))
+                      }
+                      .padding(.horizontal)
+                      .padding(.vertical, 2)
+                      ZStack (alignment: .leading){
+                        Capsule()
+                          .frame(height: 6)
+                          .foregroundStyle(.black.opacity(0.1))
+                        Capsule()
+                          .frame(height: 6)
+                          .frame(maxWidth: .infinity)
+                          .frame(maxWidth: ((geometry.size.width - 30) * Double(item.count) / 12), maxHeight: .infinity, alignment: .leading)
+                          .foregroundStyle(item.color)
+                      }
+                      .padding(.horizontal, 15)
+                    }
+                    .padding(.vertical, 5)
+                  }
+                }
               }
-              .scaledToFit()
-              .frame(width: 220, height: 220)
-              .padding()
+              .frame(maxHeight: 300)
+              .padding(.bottom, 10)
             }
+            .frame(maxHeight: 300)
             .background(RoundedRectangle(cornerRadius: 20)
               .fill(Color("ThemeColorLightCyan")))
             .padding(.horizontal)
           }
           .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
           .frame(maxHeight: 350)
+          
           VStack {
             HStack {
               Text("Recommendation")
@@ -134,6 +169,7 @@ struct AnalysisPage: View {
               Text("Completion rate is below 50%. Pay attention to your health!")
                 .font(.subheadline)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 10)
             
             HStack {
@@ -147,6 +183,7 @@ struct AnalysisPage: View {
               Text("Allocate more time for work as they often take longer than planned.")
                 .font(.subheadline)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
           }
@@ -159,22 +196,86 @@ struct AnalysisPage: View {
       }
     }
   }
+  
+  private let categoryRanges: [(category: String, range: Range<Double>)]
+  private let totalPosts: Int
+  
+  init(data: [Cat]) {
+    self.data = data
+    self._currentDate = State(initialValue: Date())
+    var total = 0
+    categoryRanges = data.map {
+      let newTotal = total + $0.count
+      let result = (category: $0.category,
+                    range: Double(total) ..< Double(newTotal))
+      total = newTotal
+      return result
+    }
+    self.totalPosts = total
+  }
+  
+  var selectedItem: Cat? {
+    guard let selectedAngle else { return nil }
+    if let selected = categoryRanges.firstIndex(where: {
+      $0.range.contains(selectedAngle)
+    }) {
+      return data[selected]
+    }
+    return nil
+  }
+  
+  private var monthStart: Date {
+    Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: currentDate))!
+  }
+  
+  private var titleView: some View {
+    VStack {
+      Text(selectedItem?.category ?? "Total")
+        .font(.title2.weight(.medium))
+      Text((selectedItem?.count.formatted() ?? totalPosts.formatted()) + " hours")
+        .font(.caption)
+    }
+  }
+  private var monthString: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMMM"
+    return formatter.string(from: monthStart)
+  }
+  
+  private var yearString: String {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy"
+    return formatter.string(from: monthStart)
+  }
+  
+  private func previousMonth() {
+    if let newDate = Calendar.current.date(byAdding: .month, value: -1, to: currentDate) {
+      currentDate = newDate
+    }
+  }
+  
+  private func nextMonth() {
+    if let newDate = Calendar.current.date(byAdding: .month, value: 1, to: currentDate) {
+      currentDate = newDate
+    }
+  }
 }
 
-struct Category {
+struct Cat: Identifiable {
+  var id: UUID = UUID()
   var category: String
   var count: Int
   var color: Color
 }
 
-let data: [Category] = [
-  .init(category: "Campus", count: 5, color: .blue),
+let data: [Cat] = [
+  .init(category: "Campus", count: 10, color: .blue),
   .init(category: "Social", count: 5, color: .mint),
-  .init(category: "Sleep", count: 5, color: .purple),
-  .init(category: "Work", count: 5, color: .red),
-  .init(category: "Exercise", count: 5, color: .orange)
+  .init(category: "Sleep", count: 10, color: .purple),
+  .init(category: "Work", count: 10, color: .red),
+  .init(category: "Exercise", count: 10, color: .orange)
 ]
 
 #Preview {
-  AnalysisPage()
+  AnalysisPage(data: data)
 }

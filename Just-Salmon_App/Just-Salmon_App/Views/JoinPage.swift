@@ -46,7 +46,7 @@ struct JoinPage: View {
             Spacer()
             NavigationLink {
               RegisterPage()
-                .navigationBarBackButtonHidden()
+//                .navigationBarBackButtonHidden()
             } label:{
               HStack(spacing: 4) {
                 Text("Join")
@@ -69,17 +69,6 @@ struct JoinPage: View {
         .padding(.vertical, 8)
         
       }
-
-//      .navigationDestination(for: Destination.self) { destination in
-//        switch destination {
-//        case .timerPage:
-//          TimerPage()
-//            .navigationBarBackButtonHidden()
-//        case .registerPage:
-////          RegisterPage()
-//          TimerPage()
-//        }
-//      }
     }
   }
 }

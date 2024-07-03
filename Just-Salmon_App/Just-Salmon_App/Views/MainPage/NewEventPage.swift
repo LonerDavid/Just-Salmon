@@ -16,22 +16,27 @@ struct NewEventPage: View {
   }
   
   @Environment(\.dismiss) var dismiss
-  @State var Event: Event
+  @State var event: Event
   var onSave: (Event) -> Void
+//  @State var tempSubcatagory: String
+  
   
   @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
   @State private var test = "" //temporary, test only
   @FocusState var focusField: FocusField?
-
+  
   var body: some View {
     NavigationStack{
       Form {
         Section{
           TextField("Title", text: $Event.name)
             .focused($focusField, equals: .title)
-          TextField("Catagory", text: $Event.catagory)
-            .focused($focusField, equals: .category)
+          Picker("Catagory", selection: $event.category) {
+              ForEach(Category.allCases, id: \.self) { state in
+                  Text(state.description)
+              }
+          }
           //TextField("Subcatagory", text: $Event.subcatagoty)
           TextField("Subcatagory", text: $test)
             .focused($focusField, equals: .subcategory)
@@ -63,7 +68,7 @@ struct NewEventPage: View {
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
           Button {
-            onSave(Event)
+            onSave(event)
             dismiss()
           } label: {
             Text("Save")
@@ -87,5 +92,5 @@ struct NewEventPage: View {
 }
 
 #Preview {
-  NewEventPage(Event: .stub) {_ in}
+  NewEventPage(event: .stub) {_ in}
 }
