@@ -8,6 +8,13 @@
 import SwiftUI
 
 struct NewEventPage: View {
+  enum FocusField {
+    case title
+    case category
+    case subcategory
+    case notes
+  }
+  
   @Environment(\.dismiss) var dismiss
   @State var event: Event
   var onSave: (Event) -> Void
@@ -17,20 +24,22 @@ struct NewEventPage: View {
   @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
   @State private var test = "" //temporary, test only
-  
-  
+  @FocusState var focusField: FocusField?
   
   var body: some View {
     NavigationStack{
       Form {
         Section{
-          TextField("Title", text: $event.name)
+          TextField("Title", text: $Event.name)
+            .focused($focusField, equals: .title)
           Picker("Catagory", selection: $event.category) {
               ForEach(Category.allCases, id: \.self) { state in
                   Text(state.description)
               }
           }
+          //TextField("Subcatagory", text: $Event.subcatagoty)
           TextField("Subcatagory", text: $test)
+            .focused($focusField, equals: .subcategory)
         }
         
         Section {
@@ -50,6 +59,7 @@ struct NewEventPage: View {
           //          TextField("Title", text: $Event.notes,  axis: .vertical)
           //              .lineLimit(5...10)
           TextField("Notes", text: $test,  axis: .vertical)
+            .focused($focusField, equals: .notes)
             .lineLimit(5...10)
         }
       }
@@ -73,6 +83,9 @@ struct NewEventPage: View {
               .foregroundStyle(Color("TextColorLightGray"))
           }
         }
+      }
+      .onTapGesture {
+        focusField = nil
       }
     }
   }
