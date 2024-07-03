@@ -169,6 +169,7 @@ struct AnalysisPage: View {
               Text("Completion rate is below 50%. Pay attention to your health!")
                 .font(.subheadline)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 10)
             
             HStack {
@@ -182,6 +183,7 @@ struct AnalysisPage: View {
               Text("Allocate more time for work as they often take longer than planned.")
                 .font(.subheadline)
             }
+            .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.horizontal, 10)
             .padding(.bottom, 10)
           }

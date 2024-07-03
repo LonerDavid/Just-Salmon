@@ -8,8 +8,9 @@
 import SwiftUI
 
 struct DatePickerPage: View {
-  @Binding var currentDate: Date
+  @State private var currentDate: Date = Date()
   @State var currentMonth: Int = 0
+  @State private var events: [Event] = .stub
   @State private var percentage1: Double = 0.5
   @State private var percentage2: Double = 0
   @State private var percentage3: Double = 0.75
@@ -49,7 +50,6 @@ struct DatePickerPage: View {
           Image(systemName: "arrowtriangle.right.fill")
             .font(.title)
         }
-        
         Menu {
           NavigationLink {
             CalendarPage()
@@ -87,134 +87,173 @@ struct DatePickerPage: View {
               .fontWeight(.semibold)
               .frame(maxWidth: .infinity)
           }
-          
         }
         let columns = Array(repeating: GridItem(.flexible()), count: 7)
         
-        LazyVGrid(columns: columns, spacing: 15) {
+        LazyVGrid(columns: columns, spacing: 0) {
           ForEach(extractDate()) { value in
             CardView(value: value)
-              .background(
-                Capsule()
-                  .fill(Color("ThemeColorOrange"))
-                  .padding(.horizontal, 8)
-                  .opacity(isSameDay(date1: value.date, date2: currentDate) ? 1 : 0)
-              )
               .onTapGesture {
-                currentDate = value.date
+                withAnimation {
+                  currentDate = value.date
+                }
               }
           }
         }
+//        .background(.blue)
+        .padding(.horizontal, 8)
+        
+        VStack(spacing: 10) {
+          Text("Events")
+            .font(.title2.bold())
+            .frame(maxWidth: .infinity, alignment: .leading)
+          let dateEvents = getEventsForDateRange(start: currentDate, end: currentDate)
+            if dateEvents != []{
+              ForEach(dateEvents, id: \.id) { event in
+                VStack(alignment:.leading, spacing: 10) {
+                  HStack{
+                    Text(getTimeString(components: event.startTime))
+                    Image(systemName: "arrow.right")
+                    Text(getTimeString(components: event.endTime))
+                  }
+                  .font(.caption)
+                  Text(event.name)
+                    .font(.title2)
+                    .fontWeight(.medium)
+                  Text(event.category.description + "/" + getSubcatString(subcat: event.subcat))
+                    .font(.caption)
+                }
+                .padding(.vertical, 10)
+                .padding(.horizontal)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(RoundedRectangle(cornerRadius: 20, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/).fill(event.category.color.opacity(0.5)))
+              }
+            } else {
+              VStack(alignment:.leading, spacing: 10) {
+                Text("No Event Found")
+              }
+            }
+        }
+        .padding(.horizontal)
+        .padding(.bottom, 20)
       }
-      .padding(.bottom, 10)
-      .padding(.horizontal, 5)
       
-      //progress view
-      VStack(alignment: .center, spacing: 5) {
-        NavigationLink(value: Destination.timerPage){
-          HStack(spacing: 10) {
-            Image(systemName: "suitcase")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 24, height: 24, alignment: .leading)
-            Text("Work")
-              .padding(.leading, 10)
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .leading)
-            Text("2/4 hr")
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .trailing)
-            
-          }
-          .padding()
-          .frame(width: 360, height: 56)
-          .background(
-            GeometryReader { proxy in
-              Capsule(style: .continuous)
-                .fill(Color("ThemeColorRed"))
-                .frame(width: (proxy.size.width - 60) * percentage1 + 60)
+      VStack {
+        Text("Categories")
+          .font(.title2.bold())
+          .frame(maxWidth: .infinity, alignment: .leading)
+        //progress view
+        VStack(alignment: .center, spacing: 10) {
+          NavigationLink(value: Destination.timerPage){
+            HStack(spacing: 10) {
+              Image(systemName: "suitcase")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24, alignment: .leading)
+              Text("Work")
+                .padding(.leading, 10)
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .leading)
+              Text("2/4 hr")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+              
             }
-          )
-          .font(.title)
-          .foregroundStyle(.white)
-          .overlay(
-            Capsule(style: .continuous)
-              .stroke(Color("ThemeColorRed"), lineWidth: 2)
-          )
+            .padding()
+            .frame(height: 56)
+            .frame(maxWidth: .infinity)
+            .background(
+              GeometryReader { proxy in
+                Capsule(style: .continuous)
+                  .fill(Color("ThemeColorRed"))
+                  .frame(width: (proxy.size.width - 60) * percentage1 + 60)
+              }
+            )
+            .font(.title)
+            .foregroundStyle(.white)
+            .overlay(
+              Capsule(style: .continuous)
+                .stroke(Color("ThemeColorRed"), lineWidth: 2)
+            )
+          }
+        }
+        VStack(alignment: .center, spacing: 10) {
+          NavigationLink(value: Destination.timerPage){
+            HStack(spacing: 10) {
+              Image(systemName: "person")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24, alignment: .leading)
+              Text("Social")
+                .padding(.leading, 10)
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .leading)
+              Text("0/4 hr")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+              
+            }
+            .padding()
+            .frame(height: 56)
+            .frame(maxWidth: .infinity)
+            .background(
+              GeometryReader { proxy in
+                Capsule(style: .continuous)
+                  .fill(Color("ThemeColorCyan"))
+                  .frame(width: (proxy.size.width - 60) * percentage2 + 60)
+              }
+            )
+            .font(.title)
+            .foregroundStyle(.white)
+            .overlay(
+              Capsule(style: .continuous)
+                .stroke(Color("ThemeColorCyan"), lineWidth: 2)
+            )
+          }
+        }
+        VStack(alignment: .center, spacing: 20) {
+          NavigationLink(value: Destination.timerPage){
+            HStack(spacing: 10) {
+              Image(systemName: "dumbbell")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 24, height: 24, alignment: .leading)
+              Text("Exercise")
+                .padding(.leading, 10)
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .leading)
+              Text("3/4 hr")
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(Color("TextColorLightGray"))
+                .frame(maxWidth: .infinity, alignment: .trailing)
+              
+            }
+            .padding()
+            .frame(height: 56)
+            .frame(maxWidth: .infinity)
+            .background(
+              GeometryReader { proxy in
+                Capsule(style: .continuous)
+                  .fill(Color("ThemeColorOrange"))
+                  .frame(width: (proxy.size.width - 60) * percentage3 + 60)
+              }
+            )
+            .font(.title)
+            .foregroundStyle(.white)
+            .overlay(
+              Capsule(style: .continuous)
+                .stroke(Color("ThemeColorOrange"), lineWidth: 2)
+            )
+          }
         }
       }
-      VStack(alignment: .center, spacing: 5) {
-        NavigationLink(value: Destination.timerPage){
-          HStack(spacing: 10) {
-            Image(systemName: "person")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 24, height: 24, alignment: .leading)
-            Text("Social")
-              .padding(.leading, 10)
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .leading)
-            Text("0/4 hr")
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .trailing)
-            
-          }
-          .padding()
-          .frame(width: 360, height: 56)
-          .background(
-            GeometryReader { proxy in
-              Capsule(style: .continuous)
-                .fill(Color("ThemeColorCyan"))
-                .frame(width: (proxy.size.width - 60) * percentage2 + 60)
-            }
-          )
-          .font(.title)
-          .foregroundStyle(.white)
-          .overlay(
-            Capsule(style: .continuous)
-              .stroke(Color("ThemeColorCyan"), lineWidth: 2)
-          )
-        }
-      }
-      VStack(alignment: .center, spacing: 20) {
-        NavigationLink(value: Destination.timerPage){
-          HStack(spacing: 10) {
-            Image(systemName: "dumbbell")
-              .resizable()
-              .scaledToFit()
-              .frame(width: 24, height: 24, alignment: .leading)
-            Text("Exercise")
-              .padding(.leading, 10)
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .leading)
-            Text("3/4 hr")
-              .font(.system(size: 20, weight: .medium))
-              .foregroundStyle(Color("TextColorLightGray"))
-              .frame(maxWidth: .infinity, alignment: .trailing)
-            
-          }
-          .padding()
-          .frame(width: 360, height: 56)
-          .background(
-            GeometryReader { proxy in
-              Capsule(style: .continuous)
-                .fill(Color("ThemeColorOrange"))
-                .frame(width: (proxy.size.width - 60) * percentage3 + 60)
-            }
-          )
-          .font(.title)
-          .foregroundStyle(.white)
-          .overlay(
-            Capsule(style: .continuous)
-              .stroke(Color("ThemeColorOrange"), lineWidth: 2)
-          )
-        }
-      }
+      .padding(.horizontal)
+      .padding(.bottom, 20)
     }
     .onChange(of: currentMonth) {
       currentDate = getCurrentMonth()
@@ -223,32 +262,52 @@ struct DatePickerPage: View {
   
   @ViewBuilder
   func CardView(value: DateValue) -> some View {
-    VStack {
-      if value.day != -1 {
-        //
-        if let event = tempEvents.first(where: { event in
-          return isSameDay(date1: event.eventDate, date2: value.date)
-        }){
-          Text("\(value.day)")
-            .font(.caption)
-            .foregroundStyle(isSameDay(date1: event.eventDate, date2: currentDate) ? .white : .primary)
-            .frame(maxWidth: .infinity)
-          Spacer()
-          Circle()
-            .fill(isSameDay(date1: event.eventDate, date2: currentDate) ? .white : Color.accentColor)
-            .frame(width: 8, height: 8)
+    VStack(alignment: .leading, spacing: 2) {
+      if isSameMonth(date: value.date) {
+        Text("\(value.day)")
+          .font(.caption2)
+          .foregroundStyle(isSameDay(date1: value.date, date2: currentDate) ? .white : .primary)
+          .background(
+            Circle()
+              .fill(Color(isSameDay(date1: value.date, date2: currentDate) ? .themeColorRed : .clear))
+              .frame(width: 15, height: 15)
+          )
+          .frame(maxWidth: .infinity, alignment: .topLeading)
+          .padding(.leading, 4)
+          .padding(.top, 2)
+        
+        let dateEvents = getEventsForDateRange(start: value.date, end: value.date)
+        
+        VStack(spacing: 2) {
+          ForEach(dateEvents.prefix(3), id: \.id) { event in
+            EventView(event: event, date: value.date)
+          }
         }
-        else{
-          Text("\(value.day)")
-            .font(.caption)
-            .foregroundStyle(isSameDay(date1: value.date, date2: currentDate) ? .white : .primary)
-            .frame(maxWidth: .infinity)
-          Spacer()
+        
+        if dateEvents.count > 3 {
+          Text("+\(dateEvents.count - 3) more")
+            .font(.system(size: 8))
+            .foregroundColor(.gray)
+            .padding(.leading, 4)
         }
+      } else {
+        Color.clear
       }
     }
-    .padding(.vertical, 9)
-    .frame(height: 50, alignment: .top)
+    .frame(height: 80, alignment: .top)
+  }
+  func EventView(event: Event, date: Date) -> some View {
+    HStack(spacing: 0) {
+      Text(event.name)
+        .font(.system(size: 8))
+        .fontWeight(.medium)
+        .lineLimit(1)
+        .foregroundColor(.primary)
+        .padding(.horizontal, 2)
+        .frame(maxWidth: .infinity) // This will make the text expand to fill available space
+    }
+    .frame(height: 14)
+    .background(RoundedRectangle(cornerRadius: 5, style: /*@START_MENU_TOKEN@*/.continuous/*@END_MENU_TOKEN@*/).fill(event.category.color.opacity(0.5)))
   }
   
   //checking dates
@@ -256,7 +315,6 @@ struct DatePickerPage: View {
     let calendar = Calendar.current
     return calendar.isDate(date1, inSameDayAs: date2)
   }
-  
   //extracting Year and Month for display
   func extraDate() -> [String] {
     let formatter = DateFormatter()
@@ -265,40 +323,57 @@ struct DatePickerPage: View {
     
     return date.components(separatedBy: " ")
   }
-  
+  func getTimeString(components: DateComponents?) -> String {
+    guard let hasComponents = components else { return "" }
+    let formatter = DateFormatter()
+    formatter.dateFormat = "MMM d, h:mm a"
+    guard let date = Calendar.current.date(from: hasComponents) else { return "" }
+    let dateString = formatter.string(from: date)
+    return dateString
+  }
+  func getSubcatString(subcat: String?) -> String {
+    guard let hasSubcat = subcat else {return ""}
+    return hasSubcat
+  }
   func getCurrentMonth() -> Date {
     let calendar = Calendar.current
-    guard let currentMonth = calendar.date(byAdding: .month, value: self.currentMonth, to: Date()) else {
-      return Date()
-    }
-    return currentMonth
+    var dateComponents = calendar.dateComponents([.year, .month], from: Date())
+    dateComponents.month! += currentMonth
+    return calendar.date(from: dateComponents) ?? Date()
   }
-  
-  func extractDate() -> [DateValue]{
+  func extractDate() -> [DateValue] {
     let calendar = Calendar.current
     let currentMonth = getCurrentMonth()
     
-    //Get current month and date
-    var days = currentMonth.getAllDates().compactMap { date -> DateValue
-      in
-      let day = calendar.component(.day, from: date)
-      return DateValue(day: day, date: date)
+    guard let firstDayOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentMonth))
+    else { return [] }
+    
+    let startingWeekday = calendar.component(.weekday, from: firstDayOfMonth)
+    
+    let totalDays = 7 * 6 // 6 weeks
+    
+    var dates: [DateValue] = []
+    
+    for day in 0..<totalDays {
+      let offsetDate = calendar.date(byAdding: .day, value: day - (startingWeekday - 1), to: firstDayOfMonth)!
+      let extractedDay = calendar.component(.day, from: offsetDate)
+      dates.append(DateValue(day: extractedDay, date: offsetDate))
     }
-    let firstWeekdays = calendar.component(.weekday, from: days.first?.date ?? Date())
-    for _ in 0..<firstWeekdays - 1 {
-      days.insert(DateValue(day: -1, date: Date()), at: 0)
+    
+    return dates
+  }
+  func getEventsForDateRange(start: Date, end: Date) -> [Event] {
+    return events.filter { event in
+      guard let startTime = event.startTime, let endTime = event.endTime,
+            let eventStart = Calendar.current.date(from: startTime),
+            let eventEnd = Calendar.current.date(from: endTime) ,
+            let newEnd = Calendar.current.date(byAdding: .day, value: 1, to: start) else { return false }
+      return eventStart <= newEnd && eventEnd >= start
     }
-    return days
   }
-  
-  func monthlyCalendar() {
-    
-  }
-  func weeklyCalendar() {
-    
-  }
-  func ganttChart() {
-    
+  func isSameMonth(date: Date) -> Bool {
+    let calendar = Calendar.current
+    return calendar.isDate(date, equalTo: currentDate, toGranularity: .month)
   }
 }
 
@@ -311,6 +386,31 @@ extension Date {
     return range.compactMap { day -> Date in
       return calendar.date(byAdding: .day, value: day - 1, to: startDate)!
     }
+  }
+}
+extension Calendar {
+  func generateDates(
+    inside interval: DateInterval,
+    matching components: DateComponents
+  ) -> [Date] {
+    var dates: [Date] = []
+    dates.append(interval.start)
+    
+    enumerateDates(
+      startingAfter: interval.start,
+      matching: components,
+      matchingPolicy: .nextTime
+    ) { date, _, stop in
+      if let date = date {
+        if date < interval.end {
+          dates.append(date)
+        } else {
+          stop = true
+        }
+      }
+    }
+    
+    return dates
   }
 }
 

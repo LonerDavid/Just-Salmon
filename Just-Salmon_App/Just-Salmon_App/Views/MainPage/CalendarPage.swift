@@ -8,8 +8,6 @@
 import SwiftUI
 
 struct CalendarPage: View {
-  @State private var currentDate = Date()
-
   var body: some View {
     NavigationStack {
       ZStack {
@@ -18,9 +16,10 @@ struct CalendarPage: View {
 
         ScrollView(.vertical) {
           VStack(spacing: 20) {
-            DatePickerPage(currentDate: $currentDate)
+            DatePickerPage()
           }
         }
+        .padding(.bottom, 5)
       }
     }
   }
