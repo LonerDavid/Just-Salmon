@@ -25,6 +25,7 @@ struct TimerPage: View {
       ZStack {
         LinearGradient(gradient: Gradient(colors: [Color("MainColorLight"), Color.white]), startPoint: .top, endPoint: .bottom)
           .ignoresSafeArea()
+        
         VStack(alignment: .center) {
           ZStack {
             Circle()

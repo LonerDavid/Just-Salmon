@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct CalendarPage: View {
+  @State var events: [Event]
   var body: some View {
     NavigationStack {
       ZStack {
@@ -16,7 +17,7 @@ struct CalendarPage: View {
 
         ScrollView(.vertical) {
           VStack(spacing: 20) {
-            DatePickerPage()
+            DatePickerPage(events: events)
           }
         }
         .padding(.bottom, 5)
@@ -25,5 +26,5 @@ struct CalendarPage: View {
   }
 }
 #Preview {
-  CalendarPage()
+  CalendarPage(events: .stub)
 }

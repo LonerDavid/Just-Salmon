@@ -10,7 +10,7 @@ import SwiftUI
 struct DatePickerPage: View {
   @State private var currentDate: Date = Date()
   @State var currentMonth: Int = 0
-  @State private var events: [Event] = .stub
+  @State var events: [Event]
   @State private var percentage1: Double = 0.5
   @State private var percentage2: Double = 0
   @State private var percentage3: Double = 0.75
@@ -52,19 +52,19 @@ struct DatePickerPage: View {
         }
         Menu {
           NavigationLink {
-            CalendarPage()
+            CalendarPage(events: events)
               .navigationBarBackButtonHidden()
           } label: {
             Text("Monthly Calendar")
           }
           NavigationLink {
-            CalendarPage()
+            CalendarPage(events: events)
               .navigationBarBackButtonHidden()
           } label: {
             Text("Weekly Calendar")
           }
           NavigationLink {
-            GanttChartPage(events: .stub, startDate: Date())
+            GanttChartPage(events: events, startDate: Date())
               .navigationBarBackButtonHidden()
           } label: {
             Text("Gantt Chart")
@@ -91,16 +91,17 @@ struct DatePickerPage: View {
         let columns = Array(repeating: GridItem(.flexible()), count: 7)
         
         LazyVGrid(columns: columns, spacing: 0) {
-          ForEach(extractDate()) { value in
-            CardView(value: value)
-              .onTapGesture {
-                withAnimation {
-                  currentDate = value.date
-                }
-              }
-          }
-        }
-//        .background(.blue)
+            ForEach(extractDate()) { value in
+                CardView(value: value)
+                    .onTapGesture {
+                        if value.day != 0 {
+                            withAnimation {
+                                currentDate = value.date
+                            }
+                        }
+                    }
+            }
+        }//        .background(.blue)
         .padding(.horizontal, 8)
         
         VStack(spacing: 10) {
@@ -262,39 +263,37 @@ struct DatePickerPage: View {
   
   @ViewBuilder
   func CardView(value: DateValue) -> some View {
-    VStack(alignment: .leading, spacing: 2) {
-      if isSameMonth(date: value.date) {
-        Text("\(value.day)")
-          .font(.caption2)
-          .foregroundStyle(isSameDay(date1: value.date, date2: currentDate) ? .white : .primary)
-          .background(
-            Circle()
-              .fill(Color(isSameDay(date1: value.date, date2: currentDate) ? .themeColorRed : .clear))
-              .frame(width: 15, height: 15)
-          )
-          .frame(maxWidth: .infinity, alignment: .topLeading)
-          .padding(.leading, 4)
-          .padding(.top, 2)
-        
-        let dateEvents = getEventsForDateRange(start: value.date, end: value.date)
-        
-        VStack(spacing: 2) {
-          ForEach(dateEvents.prefix(3), id: \.id) { event in
-            EventView(event: event, date: value.date)
+      VStack(alignment: .leading, spacing: 2) {
+          if value.day != 0 {
+              Text("\(value.day)")
+                  .font(.caption2)
+                  .foregroundStyle(isSameDay(date1: value.date, date2: currentDate) ? .white : .primary)
+                  .background(
+                      Circle()
+                          .fill(Color(isSameDay(date1: value.date, date2: currentDate) ? .themeColorRed : .clear))
+                          .frame(width: 15, height: 15)
+                  )
+                  .frame(maxWidth: .infinity, alignment: .topLeading)
+                  .padding(.leading, 4)
+                  .padding(.top, 2)
+              
+              let dateEvents = getEventsForDateRange(start: value.date, end: value.date)
+              
+              VStack(spacing: 2) {
+                  ForEach(dateEvents.prefix(3), id: \.id) { event in
+                      EventView(event: event, date: value.date)
+                  }
+              }
+              
+              if dateEvents.count > 3 {
+                  Text("+\(dateEvents.count - 3) more")
+                      .font(.system(size: 8))
+                      .foregroundColor(.gray)
+                      .padding(.leading, 4)
+              }
           }
-        }
-        
-        if dateEvents.count > 3 {
-          Text("+\(dateEvents.count - 3) more")
-            .font(.system(size: 8))
-            .foregroundColor(.gray)
-            .padding(.leading, 4)
-        }
-      } else {
-        Color.clear
       }
-    }
-    .frame(height: 80, alignment: .top)
+      .frame(height: 80, alignment: .top)
   }
   func EventView(event: Event, date: Date) -> some View {
     HStack(spacing: 0) {
@@ -342,25 +341,29 @@ struct DatePickerPage: View {
     return calendar.date(from: dateComponents) ?? Date()
   }
   func extractDate() -> [DateValue] {
-    let calendar = Calendar.current
-    let currentMonth = getCurrentMonth()
-    
-    guard let firstDayOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentMonth))
-    else { return [] }
-    
-    let startingWeekday = calendar.component(.weekday, from: firstDayOfMonth)
-    
-    let totalDays = 7 * 6 // 6 weeks
-    
-    var dates: [DateValue] = []
-    
-    for day in 0..<totalDays {
-      let offsetDate = calendar.date(byAdding: .day, value: day - (startingWeekday - 1), to: firstDayOfMonth)!
-      let extractedDay = calendar.component(.day, from: offsetDate)
-      dates.append(DateValue(day: extractedDay, date: offsetDate))
-    }
-    
-    return dates
+      let calendar = Calendar.current
+      let currentMonth = getCurrentMonth()
+      
+      guard let range = calendar.range(of: .day, in: .month, for: currentMonth),
+            let firstDayOfMonth = calendar.date(from: calendar.dateComponents([.year, .month], from: currentMonth))
+      else { return [] }
+      
+      let startingWeekday = calendar.component(.weekday, from: firstDayOfMonth)
+      
+      var dates: [DateValue] = []
+      
+      // Add leading dates from the previous month
+      for _ in 1..<startingWeekday {
+          dates.append(DateValue(day: 0, date: Date()))
+      }
+      
+      // Add dates for the current month
+      for day in range {
+          let date = calendar.date(byAdding: .day, value: day - 1, to: firstDayOfMonth)!
+          dates.append(DateValue(day: day, date: date))
+      }
+      
+      return dates
   }
   func getEventsForDateRange(start: Date, end: Date) -> [Event] {
     return events.filter { event in
@@ -415,5 +418,5 @@ extension Calendar {
 }
 
 #Preview {
-  CalendarPage()
+  CalendarPage(events: .stub)
 }

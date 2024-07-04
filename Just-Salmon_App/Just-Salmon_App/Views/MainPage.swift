@@ -17,6 +17,8 @@ struct MainPage: View {
   
   @State var tab: Tab = .calendar
   @State var isPresent: Bool = false
+  @State var editingEvent: Event?
+  @AppStorage(.event) var events: [Event] = .stub
   
   var body: some View {
     ZStack(alignment: .bottom) {
@@ -27,7 +29,7 @@ struct MainPage: View {
         }
         .id(Tab.timer)
         
-        CalendarPage()
+        CalendarPage(events: events)
           .tabItem {
             Image(systemName: "calendar")
             Text("Calendar")
@@ -56,6 +58,7 @@ struct MainPage: View {
       
       Button {
         isPresent = true
+        editingEvent = .new
       } label: {
         Image(systemName: "plus.circle.fill")
           .resizable()
@@ -64,11 +67,24 @@ struct MainPage: View {
       .frame(width: 80, height: 50)
       .background(.clear)
     }
-    .sheet(
-      isPresented: $isPresent
-    ) {
-      NewEventPage(event: .stub) { _ in }
+    .sheet(item: $editingEvent) {
+      NewEventPage(event: $0, onSave: onSave)
     }
+  }
+  
+  func onSave(event: Event) {
+      guard let index = events.index(ofID: event.id) else {
+          events.insert(event, at: 0)
+          return
+      }
+      events[index] = event
+  }
+
+  func onDelete(id: UUID) {
+      guard let index = events.index(ofID: id) else {
+          return
+      }
+      events.remove(at: index)
   }
 }
 

@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Event: Hashable, Codable {
+struct Event: Identifiable, Hashable{
   var id: UUID
   var name: String
   var startTime: DateComponents?
@@ -16,9 +16,9 @@ struct Event: Hashable, Codable {
   var notes: String?
   var progress: Double
   var category: Category
-  var subcat: String?
+  var subcat: String
   
-  init(id: UUID = UUID(), name: String, startTime: DateComponents? = nil, endTime: DateComponents? = nil, notes: String? = nil, progress: Double, category: Category, subcat: String? = nil) {
+  init(id: UUID = UUID(), name: String, startTime: DateComponents? = nil, endTime: DateComponents? = nil, notes: String? = nil, progress: Double, category: Category, subcat: String = "") {
     self.id = id
     self.name = name
     self.startTime = startTime
@@ -30,16 +30,20 @@ struct Event: Hashable, Codable {
   }
 }
 
-enum Category: String, CaseIterable, Codable {
+enum Category: String, CaseIterable, Codable{
   case work
   case social
   case exercise
+  case sleep
+  case campus
   
   var color: Color {
     switch self {
     case .work: return .themeColorRed
     case .social: return .themeColorCyan
     case .exercise: return .themeColorOrange
+    case .sleep: return .purple
+    case .campus: return .blue
     }
   }
   
@@ -48,12 +52,15 @@ enum Category: String, CaseIterable, Codable {
     case .work: return "Work"
     case .social: return "Social"
     case .exercise: return "Exercise"
+    case .sleep: return "Sleep"
+    case .campus: return "Campus"
     }
   }
 }
 
 extension Event {
   static let stub = Event(name: "A copy", startTime: DateComponents(year: 2024, month: 7, day: 2, hour: 12), endTime: DateComponents(year: 2024, month: 7,day: 3 ,hour: 12), progress: 0, category: .work, subcat: "YT A")
+  static var new = Event(name: "", startTime: nil, endTime: nil, progress: 0, category: .work, subcat: "")
 }
 
 extension [Event] {
@@ -71,3 +78,20 @@ extension [Event] {
     Event(name: "Game", startTime: DateComponents(year: 2024, month: 7, day: 1, hour: 12), endTime: DateComponents(year: 2024, month: 7,day: 2 ,hour: 12), progress: 0, category: .exercise, subcat: "Baseball")
   ]
 }
+
+extension [Event]: RawRepresentable {
+  public init?(rawValue: String) {
+    guard let data = rawValue.data(using: .utf8),
+          let array = try? JSONDecoder().decode([Event].self, from: data) else {return nil }
+    self = array
+  }
+  
+  public var rawValue: String {
+    guard let data = try? JSONEncoder().encode(self),
+          let string = String(data: data, encoding: .utf8) else { return "" }
+    
+    return string
+  }
+}
+
+extension Event: Codable { }

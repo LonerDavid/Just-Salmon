@@ -18,8 +18,7 @@ struct NewEventPage: View {
   @Environment(\.dismiss) var dismiss
   @State var event: Event
   var onSave: (Event) -> Void
-//  @State var tempSubcatagory: String
-  
+  //  @State var tempSubcatagory: String
   
   @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
@@ -33,18 +32,32 @@ struct NewEventPage: View {
           TextField("Title", text: $event.name)
             .focused($focusField, equals: .title)
           Picker("Catagory", selection: $event.category) {
-              ForEach(Category.allCases, id: \.self) { state in
-                  Text(state.description)
-              }
+            ForEach(Category.allCases, id: \.self) { state in
+              Text(state.description)
+            }
           }
           //TextField("Subcatagory", text: $Event.subcatagoty)
-          TextField("Subcatagory", text: $test)
-            .focused($focusField, equals: .subcategory)
+          TextField("Subcatagory", text: $event.subcat)
+          .focused($focusField, equals: .subcategory)
         }
         
         Section {
-          DatePicker("Start", selection: $currentDate)
-          DatePicker("End", selection: $currentDate)
+          DatePicker("Start", selection: Binding(
+            get: {
+              event.startTime?.date ?? Date()
+            },
+            set: { newDate in
+                event.startTime = Calendar.current.dateComponents([.year, .month, .day], from: newDate)
+            }
+        ))
+          DatePicker("End", selection: Binding(
+            get: {
+              event.endTime?.date ?? Date()
+            },
+            set: { newDate in
+              event.endTime = Calendar.current.dateComponents([.year, .month, .day], from: newDate)
+            }
+        ))
           Picker("Repeat",selection: $index) {
             Text("Never").tag(0)
             Text("Every Day").tag(1)
@@ -58,7 +71,10 @@ struct NewEventPage: View {
         Section {
           //          TextField("Title", text: $Event.notes,  axis: .vertical)
           //              .lineLimit(5...10)
-          TextField("Notes", text: $test,  axis: .vertical)
+          TextField("Notes", text: Binding(
+            get: { self.event.notes ?? "" },
+            set: { self.event.notes = $0.isEmpty ? nil : $0 }
+        ),  axis: .vertical)
             .focused($focusField, equals: .notes)
             .lineLimit(5...10)
         }

@@ -67,19 +67,19 @@ struct GanttChartPage: View {
             
             Menu {
               NavigationLink {
-                CalendarPage()
+                CalendarPage(events: events)
                   .navigationBarBackButtonHidden()
               } label: {
                 Text("Monthly Calendar")
               }
               NavigationLink {
-                GanttChartPage(events: .stub, startDate: Date())
+                GanttChartPage(events: events, startDate: Date())
                   .navigationBarBackButtonHidden()
               } label: {
                 Text("Weekly Calendar")
               }
               NavigationLink {
-                GanttChartPage(events: .stub, startDate: Date())
+                GanttChartPage(events: events, startDate: Date())
                   .navigationBarBackButtonHidden()
               } label: {
                 Text("Gantt Chart")
@@ -181,7 +181,7 @@ struct GanttChartPage: View {
   private func groupedEvents(for category: Category) -> [(String?, [Event])] {
     let filteredEvents = eventsInCurrentMonth().filter { $0.category == category }
     let grouped = Dictionary(grouping: filteredEvents, by: { $0.subcat })
-    return grouped.sorted(by: { ($0.key ?? "") < ($1.key ?? "") })
+    return grouped.sorted(by: { ($0.key) < ($1.key) })
   }
   
   private func eventsInCurrentMonth() -> [Event] {
