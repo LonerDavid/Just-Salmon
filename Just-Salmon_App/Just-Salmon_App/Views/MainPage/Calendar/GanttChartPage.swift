@@ -94,7 +94,7 @@ struct GanttChartPage: View {
           .padding(.horizontal, 20)
           
           ScrollView(.horizontal) {
-            VStack(alignment: .leading, spacing: 20) {
+            VStack(alignment: .leading, spacing: 0) {
               // Days header
               HStack(spacing: 0) {
                 Text("Event")
@@ -110,31 +110,34 @@ struct GanttChartPage: View {
               .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
               
               // Events grouped by category and subcat
-              ForEach(Category.allCases, id: \.self) { category in
-                VStack(alignment: .leading, spacing: 5) {
-                  Text(category.description)
-                    .font(.headline)
-                    .frame(width: 100, height: rowHeight - 4, alignment: .center)
-                    .background(category.color)
-                    .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
-                  
-                  ForEach(groupedEvents(for: category), id: \.0) { subcat, events in
-                    HStack(spacing: 0) {
-                      Text(subcat ?? "")
-                        .frame(width: 100, height: rowHeight - 4, alignment: .center)
-                        .overlay(
-                          RoundedRectangle(cornerRadius: cornerRadius)
-                            .stroke(category.color, lineWidth: 1)
-                        )
-                      Spacer()
-                      ZStack(alignment: .leading) {
-                        Rectangle()
-                          .fill(Color.clear)
-                        ForEach(events, id: \.id) { event in
-                          eventBar(for: event)
+              ScrollView(.vertical){
+                ForEach(Category.allCases, id: \.self) { category in
+                  VStack(alignment: .leading, spacing: 5) {
+                    Text(category.description)
+                      .font(.headline)
+                      .frame(width: 100, height: rowHeight - 4, alignment: .center)
+                      .background(category.color)
+                      .clipShape(RoundedRectangle(cornerRadius: cornerRadius))
+                      .padding(.top, 5)
+                    
+                    ForEach(groupedEvents(for: category), id: \.0) { subcat, events in
+                      HStack(spacing: 0) {
+                        Text(subcat ?? "")
+                          .frame(width: 100, height: rowHeight - 4, alignment: .center)
+                          .overlay(
+                            RoundedRectangle(cornerRadius: cornerRadius)
+                              .stroke(category.color, lineWidth: 1)
+                          )
+                        Spacer()
+                        ZStack(alignment: .leading) {
+                          Rectangle()
+                            .fill(Color.clear)
+                          ForEach(events, id: \.id) { event in
+                            eventBar(for: event)
+                          }
                         }
+                        .frame(width: CGFloat(numberOfDays) * dayWidth, height: rowHeight)
                       }
-                      .frame(width: CGFloat(numberOfDays) * dayWidth, height: rowHeight)
                     }
                   }
                 }

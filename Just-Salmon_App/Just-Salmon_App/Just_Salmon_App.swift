@@ -18,6 +18,7 @@ struct Just_Salmon_App: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            .preferredColorScheme(.light)
         }
     }
 }

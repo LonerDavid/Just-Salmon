@@ -28,18 +28,18 @@ struct JoinPage: View {
             .aspectRatio(contentMode: .fit)
             .frame(height: 195)
             .offset(CGSize(width: -30, height: -30))
-          Text("Track,\nAdjust,\nSucceed.")
+          Text("Track,\nmake you on track.")
             .lineSpacing(5.0)
             .multilineTextAlignment(.leading)
             .frame(alignment: .leading)
-            .font(.system(size: 70, weight: .heavy))
+            .font(.system(size: 65, weight: .heavy))
             .padding(.vertical)
             .foregroundColor(Color("TextColorGray"))
             .overlay(alignment: .topTrailing){
               Spacer()
               Image("JoinPageImage3")
                 .resizable()
-                .offset(CGSize(width: 30.0, height: 35.0))
+                .offset(CGSize(width: 20.0, height: -10))
                 .frame(width: 106, height: 106)
             }
           HStack (alignment: .bottom){ //button

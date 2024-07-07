@@ -18,11 +18,8 @@ struct NewEventPage: View {
   @Environment(\.dismiss) var dismiss
   @State var event: Event
   var onSave: (Event) -> Void
-  //  @State var tempSubcatagory: String
-  
   @State private var currentDate = Date()
   @State private var index = 0 //temporary, test only
-  @State private var test = "" //temporary, test only
   @FocusState var focusField: FocusField?
   
   var body: some View {
@@ -52,7 +49,7 @@ struct NewEventPage: View {
         ))
           DatePicker("End", selection: Binding(
             get: {
-              event.endTime?.date ?? Date()
+              event.endTime?.date ?? Date().addingTimeInterval(3600)
             },
             set: { newDate in
               event.endTime = Calendar.current.dateComponents([.year, .month, .day], from: newDate)
@@ -81,6 +78,7 @@ struct NewEventPage: View {
       }
       .navigationTitle("New Event")
       .navigationBarTitleDisplayMode(.inline)
+      .scrollDismissesKeyboard(.immediately)
       .toolbar {
         ToolbarItem(placement: .confirmationAction) {
           Button {
@@ -99,9 +97,6 @@ struct NewEventPage: View {
               .foregroundStyle(Color("TextColorLightGray"))
           }
         }
-      }
-      .onTapGesture {
-        focusField = nil
       }
     }
   }

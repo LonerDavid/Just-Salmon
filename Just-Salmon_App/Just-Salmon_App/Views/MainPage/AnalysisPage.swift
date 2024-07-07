@@ -58,7 +58,7 @@ struct AnalysisPage: View {
           .padding(.horizontal, 20)
           
           TabView {
-            VStack (spacing: 0){
+            VStack (spacing:0){
               HStack {
                 Text("Time Allocation")
                   .padding(.horizontal)
@@ -82,7 +82,7 @@ struct AnalysisPage: View {
               )
               .chartLegend(alignment: .center, spacing: 16)
               .chartAngleSelection(value: $selectedAngle)
-              .frame(height: 220)
+              .frame(maxHeight: 300)
               .padding(.vertical, 20)
               .chartBackground { chartProxy in
                 GeometryReader { geometry in
@@ -94,7 +94,7 @@ struct AnalysisPage: View {
                 }
               }
             }
-            .frame(maxHeight: 300)
+            .frame(maxHeight: 350)
             .background(RoundedRectangle(cornerRadius: 20)
               .fill(Color("ThemeColorPink")))
             .padding(.horizontal)
@@ -141,7 +141,7 @@ struct AnalysisPage: View {
               .frame(maxHeight: 300)
               .padding(.bottom, 10)
             }
-            .frame(maxHeight: 300)
+            .frame(maxHeight: 350)
             .background(RoundedRectangle(cornerRadius: 20)
               .fill(Color("ThemeColorLightCyan")))
             .padding(.horizontal)

@@ -1,10 +1,4 @@
-//
-//  HomeScreen.swift
-//  Just-Salmon_App
-//
-//  Created by Loner David on 2024/6/21.
-//
-
+//x
 import SwiftUI
 
 struct MainPage: View {
@@ -73,21 +67,22 @@ struct MainPage: View {
   }
   
   func onSave(event: Event) {
-      guard let index = events.index(ofID: event.id) else {
-          events.insert(event, at: 0)
-          return
-      }
-      events[index] = event
+    guard let index = events.index(ofID: event.id) else {
+      events.insert(event, at: 0)
+      return
+    }
+    print("Saved")
+    events[index] = event
   }
-
+  
   func onDelete(id: UUID) {
-      guard let index = events.index(ofID: id) else {
-          return
-      }
-      events.remove(at: index)
+    guard let index = events.index(ofID: id) else {
+      return
+    }
+    events.remove(at: index)
   }
 }
 
 #Preview {
-    MainPage()
+  MainPage()
 }

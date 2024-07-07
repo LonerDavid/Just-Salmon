@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TimerPage: View {
+  @StateObject var viewModel = HomeViewModel()
   @State private var timeRemaining: TimeInterval = 1168
   @State private var timer: Timer?
   @State private var isRunning: Bool = false
@@ -181,10 +182,17 @@ struct TimerPage: View {
                 .resizable()
                 .frame(width: 60, height: 60)
               VStack (alignment: .leading){
-                Text("Hi, Salmon") //temporary
-                  .font(.title)
-                  .fontWeight(.bold)
-                  .foregroundStyle(Color("TextColorLightGray"))
+                if let user = viewModel.user {
+                  Text("Hi, " + user.name)
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color("TextColorLightGray"))
+                } else {
+                  Text("Hi, " + "User")
+                    .font(.title)
+                    .fontWeight(.bold)
+                    .foregroundStyle(Color("TextColorLightGray"))
+                }
                 Text("Good Morning") //temporary
                   .font(.subheadline)
                   .foregroundStyle(Color("TextColorLightGray"))
@@ -215,6 +223,11 @@ struct TimerPage: View {
           
         }
       }
+    }
+    .onAppear {
+      viewModel.fetchUser()
+      stopTimer()
+      startTimer()
     }
   }
   
